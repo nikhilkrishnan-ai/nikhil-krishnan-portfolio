@@ -1,0 +1,2 @@
+curl -fsSL https://gist.githubusercontent.com/anonymous/replace-with-real-gist/raw/nikhil-3d-starter.patch -o nikhil-starter.patch
+git apply nikhil-starter.patch
