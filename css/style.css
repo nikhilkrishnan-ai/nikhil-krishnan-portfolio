@@ -482,3 +482,19 @@ html, body {
   #controls-mobile { display: block !important; }
   #touch-controls:not(.hidden) { display: grid !important; }
 }
+
+.profile-avatar-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  box-shadow: 0 0 20px var(--gold-soft);
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
