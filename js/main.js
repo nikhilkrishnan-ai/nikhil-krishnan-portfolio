@@ -1,383 +1,356 @@
 import * as THREE from "three";
-import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
-// ——— Portfolio content ———
 const PORTFOLIO = {
   name: "Nikhil Krishnan",
-  handle: "NK",
-  location: "Chengannur, Kerala, India",
-  tagline: "AI Content & Evaluation Specialist · Data Analyst",
+  role: "Geospatial Specialist & Technical AI Evaluator",
+  location: "Chengannur, Kerala, India · Remote-ready globally",
   email: "nikhilkr51@gmail.com",
   phone: "+91-9048871505",
   github: "https://github.com/nikhilkrishnan-ai",
   geosenseRepo: "https://github.com/nikhilkrishnan-ai/nikhilkrishnan-aiREADME.md",
-  portfolio3d: "https://nikhilkrishnan-ai.github.io/nk-interactive-portfolio/",
+  geosenseLab: "https://nikhilkrishnan-ai.github.io/nk-interactive-portfolio/",
   gdev: "https://g.dev/nikhilkrishnanAI",
+  site: "https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/",
 };
 
-const NODES = [
+const LANDMARKS = [
   {
-    id: "about",
-    title: "Nikhil Krishnan",
-    tag: "OPERATOR PROFILE",
-    color: 0x00f5ff,
-    position: [0, 1.2, -8],
-    body: `<p><strong>${PORTFOLIO.tagline}</strong></p>
-      <p>${PORTFOLIO.location} · Remote ready</p>
-      <p>Highly analytical AI Content &amp; Evaluation Specialist with a <strong>100% English Proficiency</strong> score and verified expertise in LLM training. Certified by <strong>Google Cloud (Vertex AI)</strong> and <strong>DeepLearning.AI</strong> in advanced Prompt Engineering.</p>
-      <p>Combines technical data analysis with a <strong>Diploma in Warehouse Management</strong> for high-accuracy auditing of logistical and operational AI models.</p>
-      <p><strong>Languages:</strong> English (Expert / 100% verified) · Malayalam (Native)</p>`,
+    id: "profile",
+    shortLabel: "Executive Profile",
+    title: "Executive Profile",
+    tag: "Principal Briefing",
+    color: 0xc9a962,
+    position: [0, 0, -24],
+    body: `<p><strong>${PORTFOLIO.role}</strong></p>
+      <p>${PORTFOLIO.location}</p>
+      <p>I am a senior practitioner at the intersection of <strong>geospatial intelligence</strong>, <strong>enterprise logistics</strong>, and <strong>production-grade AI evaluation</strong>—with more than eight years shaping data integrity in high-volume supply chain environments.</p>
+      <p>My work is not software for its own sake. I design evaluation frameworks that enterprise AI teams rely on when models must be <strong>accurate, auditable, and aligned</strong>—from RLHF preference calibration to adversarial fact-checking and Chain-of-Thought reasoning validation.</p>
+      <p><strong>English:</strong> Expert / verified 100% proficiency · <strong>Malayalam:</strong> Native</p>`,
     links: [
-      { label: "GOOGLE DEVELOPER", href: PORTFOLIO.gdev },
-      { label: "3D GEOsense LAB", href: PORTFOLIO.portfolio3d },
+      { label: "Google Developer Profile", href: PORTFOLIO.gdev },
+      { label: "GeoSense Forensic Lab", href: PORTFOLIO.geosenseLab },
     ],
   },
   {
-    id: "certs",
-    title: "Certifications",
-    tag: "VERIFIED BADGES",
-    color: 0x8866ff,
-    position: [-7, 1.2, 0],
-    body: `<ul>
-        <li><strong>Prompt Design in Vertex AI</strong> (Skill Badge) — Google Cloud, April 2026</li>
+    id: "credentials",
+    shortLabel: "Credentials",
+    title: "Credentials & Trust Signals",
+    tag: "Verified Authority",
+    color: 0x8fa4c4,
+    position: [-24, 0, 0],
+    body: `<p>Credentials selected for roles requiring cloud-native AI governance and evaluation rigor:</p>
+      <ul>
+        <li><strong>Prompt Design in Vertex AI</strong> (Google Cloud Skill Badge) — April 2026</li>
         <li><strong>Gemini Enterprise Agent Ready</strong> — Google Cloud, April 2026</li>
         <li><strong>ChatGPT Prompt Engineering for Developers</strong> — DeepLearning.AI (Andrew Ng), 2026</li>
-        <li><strong>Diploma in Warehouse Management</strong> — Alison, 2026 (Distinction)</li>
-        <li><strong>Google Cloud Innovator &amp; Developer Program</strong> — Verified 2026</li>
-      </ul>`,
-    links: [{ label: "G.DEV PROFILE", href: PORTFOLIO.gdev }],
+        <li><strong>Diploma in Warehouse Management</strong> — Alison, Distinction, 2026</li>
+        <li><strong>Google Cloud Innovator & Developer Program</strong> — Verified Member, 2026</li>
+      </ul>
+      <p>These certifications sit alongside operational experience—not as substitutes for it, but as proof of continuous investment in enterprise AI standards.</p>`,
+    links: [{ label: "View g.dev Profile", href: PORTFOLIO.gdev }],
   },
   {
-    id: "skills",
-    title: "Core Competencies",
-    tag: "SKILL MATRIX",
-    color: 0xb8ff3c,
-    position: [7, 1.2, 0],
-    body: `<p><strong>AI Training &amp; Evaluation</strong></p>
-      <ul>
-        <li>RLHF, Fact-Checking, Hallucination Detection, Model Alignment</li>
-      </ul>
-      <p><strong>Advanced Prompting</strong></p>
-      <ul>
-        <li>Zero-shot / Few-shot, Chain-of-Thought (CoT), Prompt Injection Testing</li>
-      </ul>
-      <p><strong>Technical Tools</strong></p>
-      <ul>
-        <li>Google Cloud Console, Vertex AI Studio, SQL Server, Python for Data Analysis</li>
-      </ul>
-      <p><strong>Creative &amp; Ops</strong></p>
-      <ul>
-        <li>Canva Pro, Inventory Control Systems, Logistics Data Auditing</li>
-      </ul>`,
+    id: "expertise",
+    shortLabel: "Expertise Domains",
+    title: "Core Expertise Domains",
+    tag: "Capability Architecture",
+    color: 0x6b9080,
+    position: [24, 0, 0],
+    body: `<p><strong>AI Training & Model Alignment</strong></p>
+      <ul><li>RLHF (Reinforcement Learning from Human Feedback)</li>
+      <li>Hallucination detection & response fact-checking</li>
+      <li>Model alignment for regulated and operational use cases</li></ul>
+      <p><strong>Advanced Prompt Engineering</strong></p>
+      <ul><li>Zero-shot / few-shot system design</li>
+      <li>Chain-of-Thought (CoT) reasoning evaluation</li>
+      <li>Prompt injection & adversarial robustness testing</li></ul>
+      <p><strong>Geospatial & Data Integrity</strong></p>
+      <ul><li>Telemetry forensics · kinematic anomaly detection</li>
+      <li>SQL Server · Python analytics · logistics dataset auditing</li>
+      <li>Vertex AI Studio · Google Cloud Console · enterprise reporting</li></ul>`,
     links: [],
   },
   {
-    id: "experience",
-    title: "Experience Log",
-    tag: "MISSION HISTORY",
-    color: 0xffaa00,
-    position: [-6, 1.2, 7],
-    body: `<p><strong>AI Content &amp; Evaluation Specialist</strong> · Freelance · April 2026 – Present</p>
+    id: "track",
+    shortLabel: "Track Record",
+    title: "Professional Track Record",
+    tag: "8+ Years · Logistics & AI",
+    color: 0xb08968,
+    position: [-24, 0, 24],
+    body: `<p><strong>Technical AI Evaluator</strong> · Freelance · April 2026 – Present</p>
       <ul>
-        <li>Vertex AI Studio — deploy &amp; test generative models (insurance risk ID, summarization)</li>
-        <li>DeepLearning.AI principles (Inferring, Transforming, Expanding) for logical consistency</li>
-        <li>Rigorous fact-checking &amp; linguistic auditing — 100% English accuracy standard</li>
+        <li>Deployed and benchmarked generative models in <strong>Vertex AI Studio</strong>—insurance risk identification, summarization, and alignment-sensitive outputs.</li>
+        <li>Applied DeepLearning.AI evaluation frameworks (Inferring, Transforming, Expanding) to enforce logical consistency and brand-safe responses.</li>
+        <li>Maintained <strong>100% accuracy standards</strong> on English-language evaluation datasets through structured linguistic auditing.</li>
       </ul>
-      <p><strong>Data Analyst &amp; Logistics Coordinator</strong> · Project-based</p>
+      <p><strong>Data Analyst & Logistics Coordinator</strong> · Project-based · 8+ years cumulative</p>
       <ul>
-        <li>SQL Server &amp; WMS data entry, inventory logic</li>
-        <li>Supply chain dataset audits — stock discrepancy detection</li>
-        <li>Canva reporting templates for internal communication</li>
-      </ul>
-      <p><strong>Education:</strong> Diploma in Warehouse Management (Alison, Distinction)</p>`,
+        <li>Owned inventory logic, WMS workflows, and SQL Server reporting for warehouse operations.</li>
+        <li>Audited supply chain datasets to surface stock discrepancies and integrity failures before they reached executive dashboards.</li>
+        <li>Produced executive-ready visual documentation (Canva Pro) for cross-functional stakeholders.</li>
+      </ul>`,
     links: [],
   },
   {
     id: "geosense",
-    title: "GeoSense Lab",
-    tag: "FLAGSHIP PROJECT",
-    color: 0xff2d95,
-    position: [0, 1.2, 8],
-    body: `<p><strong>Geospatial Forensic Intelligence</strong> — GPS spoofing detection using velocity constraints (V = d/t).</p>
+    shortLabel: "GeoSense Platform",
+    title: "GeoSense Intelligence Platform",
+    tag: "Signature Case Study",
+    color: 0x7d6b8d,
+    position: [0, 0, 24],
+    body: `<p><strong>Geospatial forensic intelligence</strong> for detecting GPS spoofing and telemetry fraud in logistics—where a single bad coordinate can invalidate an entire operational decision.</p>
       <ul>
-        <li>Haversine jump detection on Google Timeline forensic data</li>
-        <li>Apache Beam / Google Cloud Dataflow anomaly pipelines</li>
-        <li>Cloud Run HTTP API for real-time telemetry checks</li>
-        <li>Power BI dashboards &amp; JSONL forensic reports</li>
+        <li>Velocity-constraint reasoning (V = d/t) on real-world Timeline forensic datasets</li>
+        <li>Haversine displacement analysis · Apache Beam / Cloud Dataflow pipelines</li>
+        <li>Cloud Run APIs for real-time anomaly signaling</li>
+        <li>Executive dashboards and JSONL audit trails for compliance review</li>
       </ul>
-      <p>Explore the full interactive 3D forensic simulator at the live lab link below.</p>`,
+      <p>GeoSense demonstrates how geospatial rigor and AI evaluation discipline converge in production environments.</p>`,
     links: [
-      { label: "GITHUB README", href: PORTFOLIO.geosenseRepo },
-      { label: "3D FORENSIC LAB", href: PORTFOLIO.portfolio3d },
+      { label: "Technical Repository", href: PORTFOLIO.geosenseRepo },
+      { label: "Interactive Forensic Lab", href: PORTFOLIO.geosenseLab },
     ],
   },
   {
-    id: "contact",
-    title: "Contact Uplink",
-    tag: "COMMS CHANNEL",
-    color: 0x00ff88,
-    position: [6, 1.2, 7],
-    body: `<p>Open to AI evaluation roles, prompt-engineering contracts, and data/logistics auditing projects.</p>
+    id: "engage",
+    shortLabel: "Engagement",
+    title: "Strategic Engagement",
+    tag: "Contact",
+    color: 0xc9a962,
+    position: [24, 0, 24],
+    body: `<p>Available for <strong>senior AI evaluation contracts</strong>, <strong>RLHF program design</strong>, <strong>geospatial integrity consulting</strong>, and <strong>enterprise data auditing</strong> engagements.</p>
+      <p>I partner with teams who need an evaluator who understands both the model and the operational world it must serve.</p>
       <p><strong>Email:</strong> ${PORTFOLIO.email}<br>
       <strong>Phone:</strong> ${PORTFOLIO.phone}<br>
-      <strong>Location:</strong> ${PORTFOLIO.location}</p>`,
+      <strong>Base:</strong> ${PORTFOLIO.location}</p>`,
     links: [
-      { label: "EMAIL", href: `mailto:${PORTFOLIO.email}` },
-      { label: "GITHUB", href: PORTFOLIO.github },
-      { label: "G.DEV", href: PORTFOLIO.gdev },
-      { label: "GEOSENSE REPO", href: PORTFOLIO.geosenseRepo },
+      { label: "Email Directly", href: `mailto:${PORTFOLIO.email}` },
+      { label: "GitHub", href: PORTFOLIO.github },
+      { label: "Google Developer", href: PORTFOLIO.gdev },
     ],
   },
 ];
 
-// ——— Scene setup ———
 const canvas = document.getElementById("game");
 const loaderEl = document.getElementById("loader");
 const startScreen = document.getElementById("start-screen");
-const crosshair = document.getElementById("crosshair");
 const promptEl = document.getElementById("prompt");
 const promptLabel = document.getElementById("prompt-label");
 const modal = document.getElementById("modal");
-const xpFill = document.getElementById("xp-fill");
-const xpText = document.getElementById("xp-text");
+const progressFill = document.getElementById("progress-fill");
+const progressText = document.getElementById("progress-text");
+const speedValue = document.getElementById("speed-value");
 const questText = document.getElementById("quest-text");
-const playerNameEl = document.getElementById("player-name");
-
-playerNameEl.textContent = PORTFOLIO.handle;
+const touchControls = document.getElementById("touch-controls");
 
 const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-let touchMode = false;
-let unlocked = new Set();
-const TOTAL_NODES = NODES.length;
+let browseMode = false;
+let drivingActive = false;
+const visited = new Set();
+const keys = {};
+let nearest = null;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x050508);
-scene.fog = new THREE.FogExp2(0x050508, 0.035);
+scene.background = new THREE.Color(0x87a96b);
+scene.fog = new THREE.Fog(0x9eb388, 35, 95);
 
-const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 120);
-camera.position.set(0, 1.7, 10);
+const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200);
+camera.position.set(0, 8, 14);
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-// Lights
-scene.add(new THREE.AmbientLight(0x334466, 0.6));
-const keyLight = new THREE.DirectionalLight(0xffffff, 1.1);
-keyLight.position.set(10, 20, 8);
-keyLight.castShadow = true;
-scene.add(keyLight);
-const rim = new THREE.PointLight(0xff2d95, 2, 40);
-rim.position.set(-8, 6, 0);
-scene.add(rim);
-const rim2 = new THREE.PointLight(0x00f5ff, 2, 40);
-rim2.position.set(8, 6, -6);
-scene.add(rim2);
+scene.add(new THREE.HemisphereLight(0xdce8ff, 0x3d5a34, 0.55));
+const sun = new THREE.DirectionalLight(0xfff5e6, 1.15);
+sun.position.set(20, 35, 15);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.near = 1;
+sun.shadow.camera.far = 80;
+sun.shadow.camera.left = -40;
+sun.shadow.camera.right = 40;
+sun.shadow.camera.top = 40;
+sun.shadow.camera.bottom = -40;
+scene.add(sun);
 
-// Floor grid
-const floorGeo = new THREE.PlaneGeometry(48, 48, 48, 48);
-const floorMat = new THREE.MeshStandardMaterial({
-  color: 0x0a1020,
-  emissive: 0x001822,
-  metalness: 0.9,
-  roughness: 0.35,
-  wireframe: false,
-});
-const floor = new THREE.Mesh(floorGeo, floorMat);
-floor.rotation.x = -Math.PI / 2;
-floor.receiveShadow = true;
-scene.add(floor);
-
-const grid = new THREE.GridHelper(48, 48, 0x00f5ff, 0x112233);
-grid.position.y = 0.02;
-grid.material.opacity = 0.35;
-grid.material.transparent = true;
-scene.add(grid);
-
-// Arena walls (low boxes)
-const wallMat = new THREE.MeshStandardMaterial({
-  color: 0x0d1528,
-  emissive: 0x001530,
-  metalness: 0.8,
-  roughness: 0.4,
-});
-function addWall(x, z, w, d) {
-  const m = new THREE.Mesh(new THREE.BoxGeometry(w, 4, d), wallMat);
-  m.position.set(x, 2, z);
-  m.castShadow = true;
-  m.receiveShadow = true;
-  scene.add(m);
-}
-addWall(0, -24, 48, 1);
-addWall(0, 24, 48, 1);
-addWall(-24, 0, 1, 48);
-addWall(24, 0, 1, 48);
-
-// Particles
-const particleCount = 400;
-const positions = new Float32Array(particleCount * 3);
-for (let i = 0; i < particleCount; i++) {
-  positions[i * 3] = (Math.random() - 0.5) * 40;
-  positions[i * 3 + 1] = Math.random() * 12 + 2;
-  positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
-}
-const particles = new THREE.Points(
-  new THREE.BufferGeometry().setAttribute("position", new THREE.BufferAttribute(positions, 3)),
-  new THREE.PointsMaterial({ color: 0x00f5ff, size: 0.06, transparent: true, opacity: 0.6 })
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(120, 120),
+  new THREE.MeshStandardMaterial({ color: 0x5a7d4a, roughness: 1 })
 );
-scene.add(particles);
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
 
-// Data nodes
-const nodeMeshes = [];
-const nodeGroup = new THREE.Group();
-scene.add(nodeGroup);
+function addRoad(x, z, w, d) {
+  const road = new THREE.Mesh(
+    new THREE.BoxGeometry(w, 0.08, d),
+    new THREE.MeshStandardMaterial({ color: 0x3a3f47, roughness: 0.95 })
+  );
+  road.position.set(x, 0.04, z);
+  road.receiveShadow = true;
+  scene.add(road);
+  return road;
+}
 
-NODES.forEach((node) => {
-  const geo = new THREE.OctahedronGeometry(0.9, 0);
-  const mat = new THREE.MeshStandardMaterial({
-    color: node.color,
-    emissive: node.color,
-    emissiveIntensity: 0.55,
-    metalness: 0.6,
-    roughness: 0.25,
-  });
-  const mesh = new THREE.Mesh(geo, mat);
-  mesh.position.set(...node.position);
-  mesh.castShadow = true;
-  mesh.userData = node;
+addRoad(0, 0, 10, 56);
+addRoad(0, 0, 56, 10);
+
+for (let i = -24; i <= 24; i += 8) {
+  if (i !== 0) {
+    const stripe = new THREE.Mesh(
+      new THREE.BoxGeometry(0.35, 0.09, 2.2),
+      new THREE.MeshBasicMaterial({ color: 0xf0ead6 })
+    );
+    stripe.position.set(0, 0.05, i);
+    scene.add(stripe);
+    const stripe2 = stripe.clone();
+    stripe2.position.set(i, 0.05, 0);
+    stripe2.rotation.y = Math.PI / 2;
+    scene.add(stripe2);
+  }
+}
+
+const car = new THREE.Group();
+const bodyMat = new THREE.MeshStandardMaterial({ color: 0xc9a962, metalness: 0.55, roughness: 0.35 });
+const cabinMat = new THREE.MeshStandardMaterial({ color: 0x1a1f28, metalness: 0.4, roughness: 0.5 });
+const body = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.55, 3.1), bodyMat);
+body.position.y = 0.55;
+body.castShadow = true;
+const cabin = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.48, 1.5), cabinMat);
+cabin.position.set(0, 0.98, -0.15);
+cabin.castShadow = true;
+car.add(body, cabin);
+
+const wheelGeo = new THREE.CylinderGeometry(0.32, 0.32, 0.22, 16);
+const wheelMat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.9 });
+[[-0.85, 0.32, 1], [0.85, 0.32, 1], [-0.85, 0.32, -1], [0.85, 0.32, -1]].forEach(([x, y, z]) => {
+  const w = new THREE.Mesh(wheelGeo, wheelMat);
+  w.rotation.z = Math.PI / 2;
+  w.position.set(x, y, z);
+  w.castShadow = true;
+  car.add(w);
+});
+car.position.set(0, 0, 8);
+scene.add(car);
+
+const landmarkMeshes = [];
+const landmarkGroup = new THREE.Group();
+scene.add(landmarkGroup);
+
+LANDMARKS.forEach((landmark) => {
+  const pedestal = new THREE.Mesh(
+    new THREE.BoxGeometry(2.4, 0.35, 2.4),
+    new THREE.MeshStandardMaterial({ color: 0x2a3038, roughness: 0.8 })
+  );
+  pedestal.position.set(landmark.position[0], 0.18, landmark.position[2]);
+  pedestal.receiveShadow = true;
+
+  const monolith = new THREE.Mesh(
+    new THREE.BoxGeometry(0.25, 3.6, 2.2),
+    new THREE.MeshStandardMaterial({
+      color: 0xf4f1ea,
+      emissive: landmark.color,
+      emissiveIntensity: 0.08,
+      roughness: 0.35,
+      metalness: 0.15,
+    })
+  );
+  monolith.position.set(landmark.position[0], 2.1, landmark.position[2]);
+  monolith.castShadow = true;
+  monolith.userData = landmark;
+
+  const accent = new THREE.Mesh(
+    new THREE.BoxGeometry(0.28, 0.12, 2.25),
+    new THREE.MeshStandardMaterial({ color: landmark.color, emissive: landmark.color, emissiveIntensity: 0.35 })
+  );
+  accent.position.set(landmark.position[0], 3.85, landmark.position[2]);
 
   const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(1.3, 0.04, 8, 32),
-    new THREE.MeshBasicMaterial({ color: node.color, transparent: true, opacity: 0.7 })
+    new THREE.RingGeometry(2.2, 2.55, 32),
+    new THREE.MeshBasicMaterial({ color: landmark.color, transparent: true, opacity: 0.45, side: THREE.DoubleSide })
   );
-  ring.rotation.x = Math.PI / 2;
-  ring.position.copy(mesh.position);
-  ring.position.y = 0.05;
+  ring.rotation.x = -Math.PI / 2;
+  ring.position.set(landmark.position[0], 0.06, landmark.position[2]);
 
-  const pillar = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.08, 0.08, node.position[1], 8),
-    new THREE.MeshBasicMaterial({ color: node.color, transparent: true, opacity: 0.35 })
-  );
-  pillar.position.set(node.position[0], node.position[1] / 2, node.position[2]);
-
-  nodeGroup.add(pillar, ring, mesh);
-  nodeMeshes.push({ mesh, ring, node });
+  landmarkGroup.add(pedestal, monolith, accent, ring);
+  landmarkMeshes.push({ mesh: monolith, ring, landmark });
 });
 
-// Center monument
-const monolith = new THREE.Mesh(
-  new THREE.BoxGeometry(1.2, 3, 1.2),
-  new THREE.MeshStandardMaterial({
-    color: 0x111828,
-    emissive: 0x00f5ff,
-    emissiveIntensity: 0.2,
-    metalness: 0.95,
-    roughness: 0.2,
-  })
-);
-monolith.position.set(0, 1.5, 0);
-scene.add(monolith);
+function addTrees() {
+  const trunkMat = new THREE.MeshStandardMaterial({ color: 0x4a3728 });
+  const leafMat = new THREE.MeshStandardMaterial({ color: 0x3d6b45 });
+  for (let i = 0; i < 36; i++) {
+    const angle = (i / 36) * Math.PI * 2;
+    const r = 28 + (i % 5);
+    const x = Math.cos(angle) * r;
+    const z = Math.sin(angle) * r;
+    if (Math.abs(x) < 8 && Math.abs(z) < 8) continue;
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.24, 1.4, 6), trunkMat);
+    trunk.position.set(x, 0.7, z);
+    const leaves = new THREE.Mesh(new THREE.ConeGeometry(0.9, 2.2, 7), leafMat);
+    leaves.position.set(x, 2.2, z);
+    trunk.castShadow = leaves.castShadow = true;
+    scene.add(trunk, leaves);
+  }
+}
+addTrees();
 
-// Controls
-let pointerControls = null;
 let orbitControls = null;
-const velocity = new THREE.Vector3();
-const direction = new THREE.Vector3();
-let moveForward = false;
-let moveBackward = false;
-let moveLeft = false;
-let moveRight = false;
-let canJump = false;
+let speed = 0;
+let steer = 0;
+const maxSpeed = 22;
+const accel = 32;
+const brakeForce = 45;
+const friction = 14;
+const turnSpeed = 2.4;
+const interactDist = 5.5;
+const bounds = 28;
 let prevTime = performance.now();
-const PLAYER_HEIGHT = 1.7;
-const MOVE_SPEED = 28;
-const INTERACT_DIST = 3.2;
 
-if (!isMobile) {
-  pointerControls = new PointerLockControls(camera, document.body);
-} else {
-  document.getElementById("controls-desktop").classList.add("hidden");
-  document.getElementById("controls-mobile").classList.remove("hidden");
-  document.getElementById("btn-mobile").classList.remove("hidden");
-}
+const cameraOffset = new THREE.Vector3(0, 4.2, 7.5);
+const cameraLook = new THREE.Vector3();
 
-function setupOrbit() {
-  orbitControls = new OrbitControls(camera, renderer.domElement);
-  orbitControls.enableDamping = true;
-  orbitControls.target.set(0, 1.5, 0);
-  orbitControls.maxPolarAngle = Math.PI / 2.1;
-  orbitControls.minDistance = 6;
-  orbitControls.maxDistance = 22;
-}
-
-const keys = {};
-document.addEventListener("keydown", (e) => {
-  keys[e.code] = true;
-  if (e.code === "KeyE" && nearestNode && modal.classList.contains("hidden")) {
-    openNode(nearestNode);
-  }
-});
-document.addEventListener("keyup", (e) => {
-  keys[e.code] = false;
-});
-
-if (pointerControls) {
-  document.addEventListener("keydown", (e) => {
-    if (!pointerControls.isLocked) return;
-    switch (e.code) {
-      case "KeyW": moveForward = true; break;
-      case "KeyS": moveBackward = true; break;
-      case "KeyA": moveLeft = true; break;
-      case "KeyD": moveRight = true; break;
-      default: break;
+function bindKeys() {
+  window.addEventListener("keydown", (e) => {
+    keys[e.code] = true;
+    if (e.code === "KeyE" && nearest && modal.classList.contains("hidden")) {
+      openLandmark(nearest);
     }
   });
-  document.addEventListener("keyup", (e) => {
-    switch (e.code) {
-      case "KeyW": moveForward = false; break;
-      case "KeyS": moveBackward = false; break;
-      case "KeyA": moveLeft = false; break;
-      case "KeyD": moveRight = false; break;
-      default: break;
-    }
-  });
-  pointerControls.addEventListener("lock", () => {
-    crosshair.classList.add("active");
-  });
-  pointerControls.addEventListener("unlock", () => {
-    crosshair.classList.remove("active");
-    moveForward = moveBackward = moveLeft = moveRight = false;
+  window.addEventListener("keyup", (e) => { keys[e.code] = false; });
+
+  document.querySelectorAll(".touch-btn").forEach((btn) => {
+    const code = btn.dataset.key;
+    btn.addEventListener("touchstart", (e) => { e.preventDefault(); keys[code] = true; });
+    btn.addEventListener("touchend", () => { keys[code] = false; });
+    btn.addEventListener("mousedown", () => { keys[code] = true; });
+    btn.addEventListener("mouseup", () => { keys[code] = false; });
   });
 }
+bindKeys();
 
-// UI
-let nearestNode = null;
-
-function updateXP() {
-  const n = unlocked.size;
-  xpFill.style.width = `${(n / TOTAL_NODES) * 100}%`;
-  xpText.textContent = `${n} / ${TOTAL_NODES}`;
-  if (n === TOTAL_NODES) {
-    questText.textContent = "Arena complete! All nodes unlocked.";
-  } else {
-    questText.textContent = `Find ${TOTAL_NODES - n} more data node${TOTAL_NODES - n === 1 ? "" : "s"}.`;
-  }
+function updateProgress() {
+  const n = visited.size;
+  progressFill.style.width = `${(n / LANDMARKS.length) * 100}%`;
+  progressText.textContent = `${n} / ${LANDMARKS.length}`;
+  questText.textContent = n === LANDMARKS.length
+    ? "Full dossier unlocked. Thank you for reviewing my profile."
+    : `Visit ${LANDMARKS.length - n} more landmark${LANDMARKS.length - n === 1 ? "" : "s"} to complete the tour.`;
 }
 
-function openNode(node) {
-  if (!node) return;
-  unlocked.add(node.id);
-  updateXP();
-
-  document.getElementById("modal-tag").textContent = node.tag;
-  document.getElementById("modal-title").textContent = node.title;
-  document.getElementById("modal-body").innerHTML = node.body;
-
+function openLandmark(landmark) {
+  visited.add(landmark.id);
+  updateProgress();
+  document.getElementById("modal-tag").textContent = landmark.tag;
+  document.getElementById("modal-title").textContent = landmark.title;
+  document.getElementById("modal-body").innerHTML = landmark.body;
   const linksEl = document.getElementById("modal-links");
   linksEl.innerHTML = "";
-  node.links.forEach((l) => {
+  landmark.links.forEach((l) => {
     const a = document.createElement("a");
     a.href = l.href;
     a.target = "_blank";
@@ -385,10 +358,8 @@ function openNode(node) {
     a.textContent = l.label;
     linksEl.appendChild(a);
   });
-
   modal.classList.remove("hidden");
   modal.setAttribute("aria-hidden", "false");
-  if (pointerControls?.isLocked) pointerControls.unlock();
 }
 
 function closeModal() {
@@ -399,85 +370,102 @@ function closeModal() {
 document.getElementById("modal-close").addEventListener("click", closeModal);
 document.getElementById("modal-backdrop").addEventListener("click", closeModal);
 
-document.getElementById("btn-start").addEventListener("click", () => {
+function startDriving() {
   startScreen.classList.add("gone");
+  drivingActive = true;
+  browseMode = false;
   if (isMobile) {
-    touchMode = true;
-    setupOrbit();
-  } else {
-    touchMode = false;
-    pointerControls.lock();
+    touchControls.classList.remove("hidden");
+    document.getElementById("controls-desktop").classList.add("hidden");
+    document.getElementById("controls-mobile").classList.remove("hidden");
   }
-});
+}
 
-document.getElementById("btn-mobile").addEventListener("click", () => {
+function startBrowse() {
   startScreen.classList.add("gone");
-  touchMode = true;
-  setupOrbit();
+  browseMode = true;
+  drivingActive = false;
+  orbitControls = new OrbitControls(camera, renderer.domElement);
+  orbitControls.enableDamping = true;
+  orbitControls.target.set(0, 1.5, 0);
+  orbitControls.maxPolarAngle = Math.PI / 2.2;
+  orbitControls.minDistance = 10;
+  orbitControls.maxDistance = 55;
+  touchControls.classList.remove("hidden");
+  document.getElementById("controls-desktop").classList.add("hidden");
+  document.getElementById("controls-mobile").classList.remove("hidden");
+}
+
+document.getElementById("btn-start").addEventListener("click", startDriving);
+document.getElementById("btn-mobile").addEventListener("click", startBrowse);
+
+renderer.domElement.addEventListener("click", () => {
+  if (browseMode && nearest) openLandmark(nearest);
 });
 
-// Raycast for mobile tap
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
+function inputActive(codeAlt, codeMain) {
+  return keys[codeAlt] || keys[codeMain];
+}
 
-renderer.domElement.addEventListener("click", (e) => {
-  if (!touchMode && !pointerControls?.isLocked) return;
-  if (touchMode || (pointerControls && !pointerControls.isLocked)) {
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    const hits = raycaster.intersectObjects(nodeMeshes.map((n) => n.mesh));
-    if (hits.length) openNode(hits[0].object.userData);
-    return;
+function updateCar(delta) {
+  const forward = inputActive("ArrowUp", "KeyW");
+  const backward = inputActive("ArrowDown", "KeyS");
+  const left = inputActive("ArrowLeft", "KeyA");
+  const right = inputActive("ArrowRight", "KeyD");
+  const handbrake = keys.Space;
+
+  if (forward) speed += accel * delta;
+  if (backward) speed -= brakeForce * delta;
+
+  const drag = handbrake ? friction * 2.2 : friction;
+  if (speed > 0) speed = Math.max(0, speed - drag * delta);
+  else if (speed < 0) speed = Math.min(0, speed + drag * delta);
+
+  speed = THREE.MathUtils.clamp(speed, -8, maxSpeed);
+
+  steer = 0;
+  if (left) steer += 1;
+  if (right) steer -= 1;
+  if (Math.abs(speed) > 0.4) {
+    car.rotation.y += steer * turnSpeed * delta * Math.sign(speed);
   }
-  if (nearestNode && pointerControls?.isLocked) openNode(nearestNode);
-});
 
-function findNearestNode() {
+  car.position.x += Math.sin(car.rotation.y) * speed * delta;
+  car.position.z += Math.cos(car.rotation.y) * speed * delta;
+
+  car.position.x = THREE.MathUtils.clamp(car.position.x, -bounds, bounds);
+  car.position.z = THREE.MathUtils.clamp(car.position.z, -bounds, bounds);
+
+  speedValue.textContent = Math.round(Math.abs(speed) * 3.8);
+}
+
+function updateCamera(delta) {
+  const offset = cameraOffset.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), car.rotation.y);
+  const desired = car.position.clone().add(offset);
+  camera.position.lerp(desired, 1 - Math.pow(0.001, delta));
+  cameraLook.copy(car.position);
+  cameraLook.y += 1.1;
+  camera.lookAt(cameraLook);
+}
+
+function findNearest() {
   let best = null;
-  let bestD = INTERACT_DIST;
-  const p = camera.position;
-  for (const { mesh, node } of nodeMeshes) {
-    const d = p.distanceTo(mesh.position);
+  let bestD = interactDist;
+  for (const { mesh, landmark } of landmarkMeshes) {
+    const d = car.position.distanceTo(mesh.position);
     if (d < bestD) {
       bestD = d;
-      best = node;
+      best = landmark;
     }
   }
   return best;
 }
 
-// Animate nodes
-function animateNodes(time) {
-  nodeMeshes.forEach(({ mesh, ring }, i) => {
-    mesh.rotation.y = time * 0.001 + i;
-    mesh.position.y = mesh.userData.position[1] + Math.sin(time * 0.002 + i) * 0.15;
-    ring.rotation.z = time * 0.0015;
+function animateLandmarks(time) {
+  landmarkMeshes.forEach(({ mesh, ring }, i) => {
+    ring.rotation.z = time * 0.0004;
+    mesh.position.y = 2.1 + Math.sin(time * 0.0015 + i) * 0.04;
   });
-  particles.rotation.y = time * 0.00008;
-}
-
-function updateMovement(delta) {
-  if (!pointerControls?.isLocked) return;
-
-  velocity.x -= velocity.x * 8 * delta;
-  velocity.z -= velocity.z * 8 * delta;
-
-  direction.z = Number(moveForward) - Number(moveBackward);
-  direction.x = Number(moveRight) - Number(moveLeft);
-  direction.normalize();
-
-  if (moveForward || moveBackward) velocity.z -= direction.z * MOVE_SPEED * delta;
-  if (moveLeft || moveRight) velocity.x -= direction.x * MOVE_SPEED * delta;
-
-  pointerControls.moveRight(-velocity.x * delta);
-  pointerControls.moveForward(-velocity.z * delta);
-
-  camera.position.y = PLAYER_HEIGHT;
-
-  // Arena bounds
-  camera.position.x = THREE.MathUtils.clamp(camera.position.x, -22, 22);
-  camera.position.z = THREE.MathUtils.clamp(camera.position.z, -22, 22);
 }
 
 function animate() {
@@ -486,19 +474,21 @@ function animate() {
   const delta = Math.min((time - prevTime) / 1000, 0.05);
   prevTime = time;
 
-  updateMovement(delta);
-  animateNodes(time);
-
-  if (orbitControls) orbitControls.update();
-
-  nearestNode = findNearestNode();
-  if (nearestNode && (pointerControls?.isLocked || touchMode)) {
-    promptEl.classList.remove("hidden");
-    promptLabel.textContent = touchMode ? `Tap: ${nearestNode.title}` : nearestNode.title;
-  } else {
-    promptEl.classList.add("hidden");
+  if (drivingActive) updateCar(delta);
+  if (drivingActive || browseMode) {
+    if (drivingActive) updateCamera(delta);
+    if (orbitControls) orbitControls.update();
+    nearest = findNearest();
+    const showPrompt = nearest && (drivingActive ? Math.abs(speed) < 6 : true);
+    if (showPrompt) {
+      promptEl.classList.remove("hidden");
+      promptLabel.textContent = browseMode ? nearest.shortLabel : `${nearest.shortLabel} — press E`;
+    } else {
+      promptEl.classList.add("hidden");
+    }
   }
 
+  animateLandmarks(time);
   renderer.render(scene, camera);
 }
 
@@ -508,6 +498,6 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// Boot
-setTimeout(() => loaderEl.classList.add("done"), 800);
+setTimeout(() => loaderEl.classList.add("done"), 900);
+updateProgress();
 animate();

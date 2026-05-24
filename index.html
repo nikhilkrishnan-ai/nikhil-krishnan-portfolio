@@ -3,56 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NK — 3D gaming portfolio. Explore projects in a cyber arena." />
-  <title>Nikhil Krishnan | 3D Portfolio Arena</title>
+  <meta name="description" content="Nikhil Krishnan — Geospatial Specialist & Technical AI Evaluator. RLHF, fact-checking, and enterprise data integrity." />
+  <title>Nikhil Krishnan | Geospatial & AI Evaluation Expert</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div id="loader">
-    <div class="loader-ring"></div>
-    <p>LOADING ARENA<span class="dots"></span></p>
-  </div>
-
   <canvas id="game"></canvas>
+
+  <div id="loader">
+    <div class="loader-line"></div>
+    <p>Initializing experience</p>
+  </div>
 
   <div id="hud">
     <div class="hud-top">
-      <div class="player-tag">
-        <span class="label">OPERATIVE</span>
-        <span class="name" id="player-name">NK</span>
+      <div class="brand-chip">
+        <span class="chip-label">Principal Profile</span>
+        <span class="chip-name">Nikhil Krishnan</span>
       </div>
-      <div class="xp-bar">
-        <span class="label">XP</span>
-        <div class="bar"><div class="fill" id="xp-fill"></div></div>
-        <span id="xp-text">0 / 6</span>
+      <div class="progress-chip">
+        <span class="chip-label">Sites visited</span>
+        <span id="progress-text">0 / 6</span>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
       </div>
     </div>
     <div class="hud-bottom">
+      <div class="speed-chip">
+        <span class="chip-label">Velocity</span>
+        <span id="speed-value">0</span>
+        <span class="speed-unit">km/h</span>
+      </div>
       <div class="controls-hint" id="controls-desktop">
-        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move · <kbd>MOUSE</kbd> look · <kbd>E</kbd> interact · <kbd>ESC</kbd> unlock
+        <kbd>W</kbd> accelerate · <kbd>S</kbd> brake · <kbd>A</kbd><kbd>D</kbd> steer · <kbd>E</kbd> open briefing · <kbd>SPACE</kbd> handbrake
       </div>
       <div class="controls-hint hidden" id="controls-mobile">
-        Joystick to move · Tap stations to read
+        On-screen controls · Tap landmarks when nearby
       </div>
-      <div class="quest" id="quest-text">Explore the arena. Find glowing data nodes.</div>
+      <p class="quest" id="quest-text">Drive to each landmark. Explore the full professional dossier.</p>
     </div>
   </div>
 
-  <div id="crosshair"></div>
-
   <div id="prompt" class="hidden">
-    <span class="key">E</span>
-    <span id="prompt-label">Interact</span>
+    <span class="prompt-key">E</span>
+    <span id="prompt-label">Open briefing</span>
   </div>
 
   <div id="modal" class="hidden" aria-hidden="true">
     <div class="modal-backdrop" id="modal-backdrop"></div>
     <article class="modal-card">
       <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-      <p class="modal-tag" id="modal-tag">NODE</p>
+      <p class="modal-eyebrow" id="modal-tag">Briefing</p>
       <h2 id="modal-title">Title</h2>
       <div id="modal-body"></div>
       <div class="modal-links" id="modal-links"></div>
@@ -60,14 +63,40 @@
   </div>
 
   <div id="start-screen">
-    <div class="start-card">
-      <p class="start-badge">LEVEL 01 — PORTFOLIO ARENA</p>
-      <h1>NIKHIL<span class="accent"> KRISHNAN</span></h1>
-      <p class="start-sub">AI Content &amp; Evaluation · Vertex AI · GeoSense Forensics<br>Chengannur, Kerala · Walk the 3D hub and unlock 6 data nodes.</p>
-      <button id="btn-start" class="btn-primary">ENTER ARENA</button>
-      <button id="btn-mobile" class="btn-secondary hidden">EXPLORE (TOUCH MODE)</button>
-      <p class="start-note">Free to host on GitHub Pages · No install required</p>
+    <div class="start-layout">
+      <div class="start-copy">
+        <p class="start-eyebrow">Interactive portfolio · Inspired by immersive 3D experiences</p>
+        <h1>Nikhil Krishnan</h1>
+        <p class="start-role">Geospatial Specialist &amp; Technical AI Evaluator</p>
+        <p class="start-summary">
+          Eight years in logistics operations and enterprise data integrity. I lead high-stakes AI evaluation—
+          <strong>RLHF alignment</strong>, <strong>adversarial fact-checking</strong>, and
+          <strong>Chain-of-Thought reasoning audits</strong>—for production models where precision defines trust.
+        </p>
+        <ul class="start-highlights">
+          <li>Google Cloud Vertex AI · Gemini Enterprise</li>
+          <li>DeepLearning.AI Prompt Engineering (Andrew Ng)</li>
+          <li>GeoSense — geospatial forensic intelligence</li>
+        </ul>
+        <div class="start-actions">
+          <button id="btn-start" class="btn-primary">Start driving</button>
+          <button id="btn-mobile" class="btn-secondary">Browse mode (mobile)</button>
+        </div>
+        <p class="start-note">Use keyboard to drive · Free on GitHub Pages</p>
+      </div>
+      <div class="start-preview" aria-hidden="true">
+        <div class="preview-road"></div>
+        <div class="preview-car"></div>
+        <p>Drive to each landmark to unlock briefings</p>
+      </div>
     </div>
+  </div>
+
+  <div id="touch-controls" class="hidden">
+    <button class="touch-btn" data-key="ArrowUp" aria-label="Accelerate">▲</button>
+    <button class="touch-btn" data-key="ArrowDown" aria-label="Brake">▼</button>
+    <button class="touch-btn" data-key="ArrowLeft" aria-label="Steer left">◀</button>
+    <button class="touch-btn" data-key="ArrowRight" aria-label="Steer right">▶</button>
   </div>
 
   <script type="importmap">
