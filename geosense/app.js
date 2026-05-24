@@ -6,6 +6,8 @@
 const API_KEY = "Geosense_DevPower_Secure_Secret_2026";
 // Automatically target local running server if hosted on external domains like GitHub Pages
 const API_HOST = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "" : "http://localhost:8000";
+// Automatically target local running server if hosted on external domains like GitHub Pages
+const API_HOST = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "" : "http://localhost:8000";
 let map, alertMarker, pulseCircle;
 let currentContacts = [];
 
@@ -95,6 +97,13 @@ async function loadSystemData() {
     
     const data = await response.json();
     
+    // Set status indicator to Online
+    const statusBadge = document.querySelector('.header-status .status-badge');
+    if (statusBadge) {
+      statusBadge.className = 'status-badge status-online';
+      statusBadge.innerHTML = '<span class="pulse-dot"></span> OPERATIONAL';
+    }
+    
     // Render Contacts
     currentContacts = data.contacts;
     renderContactsTable(currentContacts);
@@ -108,8 +117,13 @@ async function loadSystemData() {
     // Render Logs
     renderLogs(data.logs);
   } catch (error) {
-    showToast("Error loading system console state", "error");
-    addTerminalLog("SYSTEM", "ERROR", `Failure fetching core metadata: ${error.message}`);
+    // Set status indicator to Offline (silent update, no annoying repeated toasts!)
+    const statusBadge = document.querySelector('.header-status .status-badge');
+    if (statusBadge) {
+      statusBadge.className = 'status-badge status-offline';
+      statusBadge.innerHTML = '<span class="pulse-dot-red"></span> DAEMON OFFLINE';
+    }
+    addTerminalLog("SYSTEM", "ERROR", `Core daemon connection unavailable: ${error.message}`);
   }
 }
 

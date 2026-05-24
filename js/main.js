@@ -430,8 +430,8 @@ function updateCar(delta) {
     car.rotation.y += steer * turnSpeed * delta * Math.sign(speed);
   }
 
-  car.position.x += Math.sin(car.rotation.y) * speed * delta;
-  car.position.z += Math.cos(car.rotation.y) * speed * delta;
+  car.position.x -= Math.sin(car.rotation.y) * speed * delta;
+  car.position.z -= Math.cos(car.rotation.y) * speed * delta;
 
   car.position.x = THREE.MathUtils.clamp(car.position.x, -bounds, bounds);
   car.position.z = THREE.MathUtils.clamp(car.position.z, -bounds, bounds);
