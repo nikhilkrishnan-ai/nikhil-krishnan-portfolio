@@ -3,13 +3,13 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const PORTFOLIO = {
   name: "Nikhil Krishnan",
-  role: "Geospatial Specialist & Technical AI Evaluator",
+  role: "Senior Software Developer & AI Solutions Architect",
   location: "Chengannur, Kerala, India · Remote-ready globally",
   email: "nikhilkr51@gmail.com",
   phone: "+91-9048871505",
   github: "https://github.com/nikhilkrishnan-ai",
   geosenseRepo: "https://github.com/nikhilkrishnan-ai/nikhilkrishnan-aiREADME.md",
-  geosenseLab: "https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/geosense/",
+  geosenseLab: "https://nikhilkrishnan-ai.github.io/nk-interactive-portfolio/",
   gdev: "https://g.dev/nikhilkrishnanAI",
   site: "https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/",
 };
@@ -24,8 +24,8 @@ const LANDMARKS = [
     position: [0, 0, -24],
     body: `<p><strong>${PORTFOLIO.role}</strong></p>
       <p>${PORTFOLIO.location}</p>
-      <p>I am a senior practitioner at the intersection of <strong>geospatial intelligence</strong>, <strong>enterprise logistics</strong>, and <strong>production-grade AI evaluation</strong>—with more than eight years shaping data integrity in high-volume supply chain environments.</p>
-      <p>My work is not software for its own sake. I design evaluation frameworks that enterprise AI teams rely on when models must be <strong>accurate, auditable, and aligned</strong>—from RLHF preference calibration to adversarial fact-checking and Chain-of-Thought reasoning validation.</p>
+      <p>I am a senior full-stack software expert specializing in <strong>scalable backend architectures, API gateway design, and production-grade AI systems orchestration</strong>. With over eight years of experience building secure, high-throughput systems, I design robust infrastructure that bridges hardware, web clients, and artificial intelligence.</p>
+      <p>My core discipline focuses on building robust systems—such as real-time alert routers, geospatial anomalies detectors, and automated workflows—designed to be <strong>fault-tolerant, secure, and highly scalable</strong> under heavy enterprise loads.</p>
       <p><strong>English:</strong> Expert / verified 100% proficiency · <strong>Malayalam:</strong> Native</p>`,
     links: [
       { label: "Google Developer Profile", href: PORTFOLIO.gdev },
