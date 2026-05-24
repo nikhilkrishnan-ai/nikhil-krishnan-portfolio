@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geosense Alert System | Emergency Dispatch & Operations Center</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS for Dark Maps -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Premium Style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Background Glow Effects -->
+  <div class="glow-sphere glow-sphere-1"></div>
+  <div class="glow-sphere glow-sphere-2"></div>
+  
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <div class="logo-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <div class="logo-text">
+          <h1>GEOSENSE</h1>
+          <span>EMERGENCY DISPATCH & ROUTING HUB</span>
+        </div>
+      </div>
+      
+      <div class="header-status">
+        <div class="status-indicator-group">
+          <span class="status-label">SERVER STATUS</span>
+          <div class="status-badge status-online">
+            <span class="pulse-dot"></span> OPERATIONAL
+          </div>
+        </div>
+        <div class="status-indicator-group">
+          <span class="status-label">SECURITY</span>
+          <div class="status-badge status-secure">
+            <i class="fa-solid fa-shield-halved"></i> ENCRYPTED
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid Dashboard Layout -->
+    <main class="dashboard-grid">
+      
+      <!-- COLUMN 1: Control Panel & Integrations -->
+      <section class="grid-col card glassmorphic alert-control-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-bullhorn text-red"></i> Emergency Dispatch Console</h2>
+          <span class="card-subtitle">Trigger localized network and cellular alerts</span>
+        </div>
+        
+        <div class="card-body">
+          <!-- Armed State Switch -->
+          <div class="safety-switch-container">
+            <span class="switch-label"><i class="fa-solid fa-circle-exclamation text-yellow"></i> TRIGGER SAFETY SYSTEM:</span>
+            <label class="switch">
+              <input type="checkbox" id="safety-switch">
+              <span class="slider round"></span>
+            </label>
+            <span id="safety-status-text" class="safety-text disarmed">DISARMED</span>
+          </div>
+
+          <!-- Big Red Button -->
+          <div class="dispatch-trigger-zone">
+            <button id="emergency-btn" class="emergency-button locked" disabled>
+              <span class="inner-circle">
+                <i class="fa-solid fa-skull-crossbones alarm-icon"></i>
+                <span class="btn-text">PRESS TO BROADCAST</span>
+              </span>
+              <span class="ripple-wave"></span>
+            </button>
+          </div>
+
+          <!-- Input Parameters -->
+          <form id="emergency-form" class="emergency-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="event-source">Event Source</label>
+                <select id="event-source" class="form-input">
+                  <option value="Geosense Web Control Panel">Geosense Web Console</option>
+                  <option value="Galaxy Watch 4 Classic">Samsung Watch 4 LTE</option>
+                  <option value="External IoT Sensor Node">External IoT Macro</option>
+                  <option value="AntiGravity PC Client">AntiGravity PC Engine</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="severity-level">Severity Level</label>
+                <select id="severity-level" class="form-input">
+                  <option value="CRITICAL EMERGENCY" class="text-red">CRITICAL EMERGENCY</option>
+                  <option value="HIGH ALERT" class="text-orange">HIGH ALERT</option>
+                  <option value="SYSTEM WARNING" class="text-yellow">SYSTEM WARNING</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="alert-message">Emergency Message</label>
+              <textarea id="alert-message" class="form-input" rows="3" placeholder="Describe the emergency event detail here...">🚨 EMERGENCY DEPLOYED. Security breach, hazard or manual distress call registered from Geosense Server Hub.</textarea>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="geo-lat">Latitude</label>
+                <input type="number" step="any" id="geo-lat" class="form-input" value="9.306945">
+              </div>
+              <div class="form-group">
+                <label for="geo-lng">Longitude</label>
+                <input type="number" step="any" id="geo-lng" class="form-input" value="76.647788">
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- COLUMN 2: Leaflet Map & Visual Tracking -->
+      <section class="grid-col card glassmorphic map-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-earth-americas text-blue"></i> Real-time Incident Geolocation Map</h2>
+          <span class="card-subtitle">Visualizes active emergency zone and alert origin point</span>
+        </div>
+        <div class="card-body map-body">
+          <div id="map"></div>
+          <div class="map-overlay-coordinates">
+            <span class="coord-label">GPS:</span> <span id="gps-coords">9.306945° N, 76.647788° E</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMN 3: Contact Matrix Whitelist -->
+      <section class="grid-col card glassmorphic contacts-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-users text-purple"></i> Emergency Contact Matrix</h2>
+          <span class="card-subtitle">Manage whitelisted contacts and their specific alert channels</span>
+          <button id="add-contact-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-plus"></i> Add Contact</button>
+        </div>
+        <div class="card-body">
+          <div class="table-container">
+            <table class="contacts-table">
+              <thead>
+                <tr>
+                  <th>Contact Info</th>
+                  <th class="text-center">Channels</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="contacts-tbody">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMN 4: Integration Gateways -->
+      <section class="grid-col card glassmorphic integrations-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-plug text-cyan"></i> API Integration Status</h2>
+          <span class="card-subtitle">Configure Twilio, SendGrid and Telegram API endpoints</span>
+          <button id="edit-credentials-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-gear"></i> Set Credentials</button>
+        </div>
+        <div class="card-body">
+          <div class="integrations-list">
+            <div class="integration-item" id="integ-twilio-sms">
+              <div class="integ-info">
+                <i class="fa-solid fa-comment-sms text-cyan"></i>
+                <div class="integ-meta">
+                  <h3>Twilio Carrier SMS</h3>
+                  <span>Status: Offline</span>
+                </div>
+              </div>
+              <span class="integ-dot dot-inactive"></span>
+            </div>
+
+            <div class="integration-item" id="integ-twilio-call">
+              <div class="integ-info">
+                <i class="fa-solid fa-phone-volume text-cyan"></i>
+                <div class="integ-meta">
+                  <h3>Twilio Voice Dialer</h3>
+                  <span>Status: Offline</span>
+                </div>
+              </div>
+              <span class="integ-dot dot-inactive"></span>
+            </div>
+
+            <div class="integration-item" id="integ-sendgrid">
+              <div class="integ-info">
+                <i class="fa-solid fa-envelope text-purple"></i>
+                <div class="integ-meta">
+                  <h3>SendGrid SMTP Mailer</h3>
+                  <span>Status: Offline</span>
+                </div>
+              </div>
+              <span class="integ-dot dot-inactive"></span>
+            </div>
+
+            <div class="integration-item" id="integ-telegram">
+              <div class="integ-info">
+                <i class="fa-brands fa-telegram text-blue"></i>
+                <div class="integ-meta">
+                  <h3>Telegram Bot Core</h3>
+                  <span>Status: Offline</span>
+                </div>
+              </div>
+              <span class="integ-dot dot-inactive"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMN 5: Real-time Operational Logs -->
+      <section class="grid-col card glassmorphic logs-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-terminal text-green"></i> Operational Logs</h2>
+          <span class="card-subtitle">Real-time tracking of requests and routing diagnostics</span>
+          <button id="clear-logs-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-trash-can"></i> Clear</button>
+        </div>
+        <div class="card-body terminal-body">
+          <div class="terminal" id="terminal-logs">
+            <!-- Dynamically populated logs -->
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMN 6: Developer API Sandbox -->
+      <section class="grid-col card glassmorphic sandbox-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-code text-orange"></i> Developer API Sandbox</h2>
+          <span class="card-subtitle">Connect external applications to your Geosense Server Hub</span>
+        </div>
+        <div class="card-body sandbox-body">
+          <div class="sandbox-tabs">
+            <button class="sandbox-tab-btn active" data-tab="curl">cURL</button>
+            <button class="sandbox-tab-btn" data-tab="python">Python</button>
+            <button class="sandbox-tab-btn" data-tab="nodejs">Node.js</button>
+            <button class="sandbox-tab-btn" data-tab="watch">Smartwatch (IoT)</button>
+          </div>
+          
+          <div class="sandbox-content">
+            <div id="tab-curl" class="tab-pane active">
+              <pre><code class="language-bash" id="curl-code">curl -X POST "http://localhost:8000/api/v1/trigger-emergency" \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Geosense_DevPower_Secure_Secret_2026" \
+  -d '{
+    "event_source": "External Client",
+    "severity": "CRITICAL",
+    "message": "Manual alert button deployed.",
+    "latitude": 12.9716,
+    "longitude": 77.5946
+  }'</code></pre>
+            </div>
+            <div id="tab-python" class="tab-pane">
+              <pre><code class="language-python" id="python-code">import requests
+
+url = "http://localhost:8000/api/v1/trigger-emergency"
+headers = {
+    "X-API-KEY": "Geosense_DevPower_Secure_Secret_2026",
+    "Content-Type": "application/json"
+}
+payload = {
+    "event_source": "Python Remote Script",
+    "severity": "CRITICAL",
+    "message": "Emergency macro call executed.",
+    "latitude": 12.9716,
+    "longitude": 77.5946
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print("Response:", response.status_code, response.json())</code></pre>
+            </div>
+            <div id="tab-nodejs" class="tab-pane">
+              <pre><code class="language-js" id="nodejs-code">const fetch = require('node-fetch');
+
+const url = 'http://localhost:8000/api/v1/trigger-emergency';
+const payload = {
+  event_source: 'Node.js Agent',
+  severity: 'CRITICAL',
+  message: 'System critical signal broadcasted.',
+  latitude: 12.9716,
+  longitude: 77.5946
+};
+
+fetch(url, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-KEY': 'Geosense_DevPower_Secure_Secret_2026'
+  },
+  body: JSON.stringify(payload)
+})
+.then(res => res.json())
+.then(json => console.log(json))
+.catch(err => console.error(err));</code></pre>
+            </div>
+            <div id="tab-watch" class="tab-pane">
+              <div class="watch-integration-info">
+                <h3>Samsung Galaxy Watch 4 Classic (LTE) Gateway</h3>
+                <p>Integrate your wearOS watch using direct HTTP client apps (like HTTP Requestor, Tasker Wear, or custom Watch Face macros). Send an immediate POST request directly through the watch's LTE or Wi-Fi channel: </p>
+                <ul>
+                  <li><strong>Endpoint:</strong> <code>http://[YOUR_IP]:8000/api/v1/trigger-emergency</code></li>
+                  <li><strong>Method:</strong> <code>POST</code></li>
+                  <li><strong>Auth Header:</strong> <code>X-API-KEY: Geosense_DevPower_Secure_Secret_2026</code></li>
+                  <li><strong>Watch cellular rings instantly:</strong> The server routes cellular calls directly back to your watch via Twilio Voice!</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sandbox-actions">
+            <button id="copy-sandbox-code" class="btn btn-secondary btn-sm"><i class="fa-solid fa-copy"></i> Copy Code</button>
+            <button id="test-sandbox-endpoint" class="btn btn-primary btn-sm"><i class="fa-solid fa-paper-plane"></i> Test Endpoint Trigger</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL 1: ADD/EDIT CONTACT -->
+  <div id="contact-modal" class="modal-overlay">
+    <div class="modal card glassmorphic">
+      <div class="card-header">
+        <h2 id="contact-modal-title">Add Emergency Contact</h2>
+        <button class="close-modal-btn" onclick="closeModal('contact-modal')">&times;</button>
+      </div>
+      <div class="card-body">
+        <form id="contact-form">
+          <input type="hidden" id="contact-id">
+          
+          <div class="form-group">
+            <label for="contact-name">Full Name</label>
+            <input type="text" id="contact-name" class="form-input" required placeholder="e.g. Nikhil Kumar">
+          </div>
+          
+          <div class="form-group">
+            <label for="contact-phone">Phone Number (with country code)</label>
+            <input type="tel" id="contact-phone" class="form-input" required placeholder="e.g. +919048871505">
+          </div>
+          
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" class="form-input" required placeholder="e.g. user@domain.com">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-telegram-chat-id">Telegram Chat ID (Optional)</label>
+            <input type="text" id="contact-telegram-chat-id" class="form-input" placeholder="e.g. 123456789 (run /getid in telegram)">
+            <span class="input-helper">Allows direct custom alerts to this contact's Telegram bot.</span>
+          </div>
+
+          <div class="form-group checkbox-channels-group">
+            <label>Authorized Channels</label>
+            <div class="checkbox-row">
+              <label class="checkbox-container">
+                <input type="checkbox" id="chan-sms" checked> SMS
+              </label>
+              <label class="checkbox-container">
+                <input type="checkbox" id="chan-call" checked> Call
+              </label>
+              <label class="checkbox-container">
+                <input type="checkbox" id="chan-email" checked> Email
+              </label>
+              <label class="checkbox-container">
+                <input type="checkbox" id="chan-telegram"> Telegram
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeModal('contact-modal')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Contact</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: SYSTEM CREDENTIALS -->
+  <div id="credentials-modal" class="modal-overlay">
+    <div class="modal card glassmorphic credentials-modal-width">
+      <div class="card-header">
+        <h2>System Gateway Credentials</h2>
+        <button class="close-modal-btn" onclick="closeModal('credentials-modal')">&times;</button>
+      </div>
+      <div class="card-body">
+        <form id="credentials-form">
+          <div class="credentials-tabs">
+            <button type="button" class="cred-tab-btn active" onclick="switchCredTab('twilio-cred')">Twilio</button>
+            <button type="button" class="cred-tab-btn" onclick="switchCredTab('sendgrid-cred')">SendGrid</button>
+            <button type="button" class="cred-tab-btn" onclick="switchCredTab('telegram-cred')">Telegram Bot</button>
+          </div>
+
+          <!-- TWILIO SECTION -->
+          <div id="cred-twilio-cred" class="cred-tab-content active">
+            <div class="form-group">
+              <label for="twilio-sid">Twilio Account SID</label>
+              <input type="text" id="twilio-sid" class="form-input" placeholder="AC...">
+            </div>
+            <div class="form-group">
+              <label for="twilio-token">Twilio Auth Token</label>
+              <input type="password" id="twilio-token" class="form-input" placeholder="••••••••••••••••">
+            </div>
+            <div class="form-group">
+              <label for="twilio-from">Twilio Outbound Phone Number</label>
+              <input type="text" id="twilio-from" class="form-input" placeholder="+1...">
+            </div>
+          </div>
+
+          <!-- SENDGRID SECTION -->
+          <div id="cred-sendgrid-cred" class="cred-tab-content">
+            <div class="form-group">
+              <label for="sendgrid-key">SendGrid API Key</label>
+              <input type="password" id="sendgrid-key" class="form-input" placeholder="SG...">
+            </div>
+            <div class="form-group">
+              <label for="sendgrid-from">SendGrid Verified Sender Email</label>
+              <input type="email" id="sendgrid-from" class="form-input" placeholder="sender@domain.com">
+            </div>
+          </div>
+
+          <!-- TELEGRAM BOT SECTION -->
+          <div id="cred-telegram-cred" class="cred-tab-content">
+            <div class="form-group">
+              <label for="telegram-token">Telegram Bot Token</label>
+              <input type="password" id="telegram-token" class="form-input" placeholder="12345678:AAEg...">
+              <span class="input-helper">Obtained by talking to <strong>@BotFather</strong> on Telegram.</span>
+            </div>
+            <div class="form-group">
+              <label for="telegram-chat-id">Default Target Chat ID / Channel ID</label>
+              <input type="text" id="telegram-chat-id" class="form-input" placeholder="e.g. 123456789 or -100...">
+              <span class="input-helper">Default Telegram channel/chat for routing status alerts.</span>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeModal('credentials-modal')">Close</button>
+            <button type="submit" class="btn btn-primary">Save Gateways</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-container"></div>
+
+  <!-- Leaflet JS for Maps -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Custom Logic JS -->
+  <script src="app.js"></script>
+</body>
+</html>

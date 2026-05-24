@@ -9,7 +9,7 @@ const PORTFOLIO = {
   phone: "+91-9048871505",
   github: "https://github.com/nikhilkrishnan-ai",
   geosenseRepo: "https://github.com/nikhilkrishnan-ai/nikhilkrishnan-aiREADME.md",
-  geosenseLab: "https://nikhilkrishnan-ai.github.io/nk-interactive-portfolio/",
+  geosenseLab: "https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/geosense/",
   gdev: "https://g.dev/nikhilkrishnanAI",
   site: "https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/",
 };
