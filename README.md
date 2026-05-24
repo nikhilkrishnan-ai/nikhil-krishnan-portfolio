@@ -39,7 +39,7 @@ Edit `js/main.js`:
 1. Create a repo on GitHub, e.g. `portfolio-3d-gaming`
 2. Push this folder
 3. **Settings → Pages → Source**: Deploy from branch `main`, folder `/ (root)`
-4. Site URL: `https://YOUR_USERNAME.github.io/portfolio-3d-gaming/`
+4. Site URL: `https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/`
 
 ### One-time push
 
@@ -49,7 +49,7 @@ git init
 git add .
 git -c user.name="Your Name" -c user.email="you@example.com" commit -m "Add 3D gaming portfolio"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/portfolio-3d-gaming.git
+git remote add origin https://github.com/nikhilkrishnan-ai/nikhil-krishnan-portfolio.git
 git push -u origin main
 ```
 
