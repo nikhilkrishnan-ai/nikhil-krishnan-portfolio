@@ -6,8 +6,6 @@
 const API_KEY = "Geosense_DevPower_Secure_Secret_2026";
 // Automatically target local running server if hosted on external domains like GitHub Pages
 const API_HOST = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "" : "http://localhost:8000";
-// Automatically target local running server if hosted on external domains like GitHub Pages
-const API_HOST = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "" : "http://localhost:8000";
 let map, alertMarker, pulseCircle;
 let currentContacts = [];
 
@@ -204,7 +202,7 @@ async function deleteContact(id) {
   if (!confirm("Are you sure you want to remove this contact from the whitelisted operations list?")) return;
 
   try {
-    const response = await fetch(`/api/v1/contacts/${id}`, {
+    const response = await fetch(API_HOST + `/api/v1/contacts/${id}`, {
       method: 'DELETE',
       headers: { 'X-API-KEY': API_KEY }
     });
