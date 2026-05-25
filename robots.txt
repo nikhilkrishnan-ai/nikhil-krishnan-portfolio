@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/sitemap.xml
