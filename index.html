@@ -7,18 +7,19 @@
     <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 🎨 Custom CSS Variables and Reset */
+        /* 🎨 CSS Variables & Design System */
         :root {
             --bg-obsidian: #0b0f12;
-            --bg-card: rgba(17, 24, 32, 0.8);
+            --bg-slate: #0f172a;
+            --bg-card: rgba(15, 23, 42, 0.85);
             --neon-green: #10b981;
-            --neon-green-dim: rgba(16, 185, 129, 0.1);
-            --neon-green-glow: rgba(16, 185, 129, 0.3);
+            --neon-green-dim: rgba(16, 185, 129, 0.08);
+            --neon-green-glow: rgba(16, 185, 129, 0.25);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
-            --border-color: rgba(16, 185, 129, 0.3);
+            --border-color: rgba(16, 185, 129, 0.25);
             --transition-speed: 0.3s;
         }
 
@@ -35,8 +36,8 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 40%);
             background-attachment: fixed;
             user-select: none;
             -webkit-user-select: none;
@@ -50,8 +51,8 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
-            background: rgba(11, 15, 18, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(11, 15, 18, 0.95);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -99,10 +100,17 @@
             box-shadow: 0 0 8px var(--neon-green);
         }
 
+        /* Container styling */
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
         /* 🚀 Hero Section */
         .hero {
             text-align: center;
-            padding: 80px 20px 40px;
+            padding: 60px 20px 40px;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -112,7 +120,7 @@
             font-size: 3rem;
             font-weight: 900;
             line-height: 1.2;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin-bottom: 20px;
             text-transform: uppercase;
         }
@@ -125,143 +133,453 @@
         .hero p {
             color: var(--text-secondary);
             font-size: 1.15rem;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-weight: 300;
         }
 
-        /* 📦 Course Cards Grid */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+        /* 🖼️ Slideshow Presentation Component */
+        .slideshow-section {
             margin-bottom: 80px;
         }
 
-        .card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .slideshow-title {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .slideshow-title span {
+            color: var(--neon-green);
+        }
+
+        .slideshow-wrapper {
+            background-color: #070a0d;
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             overflow: hidden;
-            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             position: relative;
+        }
+
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 300%;
+        }
+
+        .slide-item {
+            width: 33.333%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #070a0d;
+            padding: 10px;
+        }
+
+        .slide-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .slideshow-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .slideshow-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .slideshow-dot.active {
+            background-color: var(--neon-green);
+            box-shadow: 0 0 8px var(--neon-green);
+            transform: scale(1.2);
+        }
+
+        /* 📱 Interactive Recreated Slide Layouts (CSS Grids) */
+        .recreated-slide-section {
+            margin-bottom: 80px;
+        }
+
+        .slide-card-layout {
+            background: linear-gradient(135deg, #0e141a 0%, #06080b 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr 1fr;
+            gap: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            align-items: center;
+        }
+
+        .slide-card-layout::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Slide Columns */
+        .slide-col-profile {
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            gap: 20px;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--neon-green);
-            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.15);
-        }
-
-        .card-image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background-color: rgba(0,0,0,0.4);
+        .profile-frame {
+            border-radius: 16px;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
 
-        .card-image {
+        .profile-frame img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            height: auto;
+            display: block;
+            filter: grayscale(10%) contrast(105%);
         }
 
-        .card:hover .card-image {
-            transform: scale(1.05);
+        .profile-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 300;
         }
 
-        .card-content {
-            padding: 25px;
+        .profile-desc strong {
+            color: var(--text-primary);
+        }
+
+        .profile-desc span.highlight {
+            color: var(--neon-green);
+        }
+
+        .slide-col-content {
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            gap: 30px;
         }
 
-        .card-tag {
+        .slide-section-header {
             font-family: 'Orbitron', sans-serif;
             color: var(--neon-green);
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 1.15rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .tier-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all var(--transition-speed);
+        }
+
+        .tier-card:hover {
+            background: rgba(16, 185, 129, 0.03);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .tier-title-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 10px;
         }
 
-        .card-title {
+        .arrow-indicator {
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .tier-title-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.35rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--text-primary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .card-desc {
+        .tier-description {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
+            font-size: 0.9rem;
             font-weight: 300;
-            flex-grow: 1;
         }
 
-        .card-price-row {
+        .slide-col-brand {
             display: flex;
+            flex-direction: column;
+            align-items: flex-end;
             justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
+            height: 100%;
+            text-align: right;
         }
 
-        .price-label {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .brand-logo-hex {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--neon-green);
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background-color: var(--neon-green-dim);
+            box-shadow: 0 0 15px var(--neon-green-glow);
+            animation: rotate-hex 15s linear infinite;
         }
 
-        .price-value {
+        .brand-title-vert {
             font-family: 'Orbitron', sans-serif;
-            color: var(--text-primary);
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             font-weight: 900;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
-        .price-value span {
+        .brand-title-vert span {
+            color: var(--neon-green);
+            display: block;
+        }
+
+        .brand-tagline-vert {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 200px;
+        }
+
+        /* SVG Line Graph on Slide 3 */
+        .svg-graph-container {
+            width: 100%;
+            height: 150px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 15px;
+        }
+
+        .graph-line {
+            stroke: var(--neon-green);
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 5px var(--neon-green));
+        }
+
+        .graph-dots {
+            fill: var(--text-primary);
+            stroke: var(--neon-green);
+            stroke-width: 2;
+        }
+
+        .graph-grid {
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 1;
+        }
+
+        .graph-text {
+            fill: var(--text-secondary);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 8px;
+        }
+
+        /* Stack of 3 images on Slide 3 */
+        .slide3-middle-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .slide3-middle-img {
+            width: 100%;
+            height: 90px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 📦 Interactive heavy course enrollment cards */
+        .enroll-section-title {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            margin-top: 80px;
+            margin-bottom: 10px;
+        }
+
+        .enroll-section-title span {
             color: var(--neon-green);
         }
 
-        .btn-buy {
+        .enroll-section-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .grid-enroll {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .card-enroll {
+            background: linear-gradient(145deg, #111827 0%, #030712 100%);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-enroll:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-green);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+        }
+
+        .card-enroll-img-wrapper {
+            height: 220px;
+            position: relative;
+            background-color: #000;
+        }
+
+        .card-enroll-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: transform 0.5s ease;
+        }
+
+        .card-enroll:hover .card-enroll-img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .card-enroll-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--neon-green);
+            color: var(--bg-obsidian);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-enroll-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-enroll-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .card-enroll-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .card-enroll-price-box {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .enroll-price-val {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+
+        .enroll-price-val span {
+            color: var(--neon-green);
+        }
+
+        .enroll-btn {
             background-color: var(--neon-green);
             color: var(--bg-obsidian);
             border: none;
-            width: 100%;
-            padding: 14px 20px;
+            padding: 15px;
+            border-radius: 8px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 8px;
             cursor: pointer;
-            transition: all var(--transition-speed) ease;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            letter-spacing: 1.5px;
+            transition: all var(--transition-speed);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
         }
 
-        .btn-buy:hover {
+        .enroll-btn:hover {
             background-color: #059669;
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 6px 22px rgba(16, 185, 129, 0.45);
             transform: translateY(-2px);
         }
 
@@ -269,7 +587,7 @@
         .form-section {
             background: linear-gradient(145deg, #111820, #070a0d);
             border: 2px solid var(--border-color);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.12);
             border-radius: 16px;
             padding: 40px;
             max-width: 600px;
@@ -326,9 +644,34 @@
             background-color: #151d29;
         }
 
+        /* Toast Alert Panel */
+        #toast {
+            visibility: hidden;
+            min-width: 320px;
+            background-color: #0b0f12;
+            border: 2px solid var(--neon-green);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 4.5s;
+        }
+
         /* 🏢 Footer Section */
         footer {
-            background-color: #050709;
+            background-color: #040608;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 60px 5% 40px;
             color: var(--text-secondary);
@@ -372,14 +715,17 @@
         .founder-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 12px;
             margin-top: 15px;
         }
 
         .founder-name {
-            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
             color: var(--text-primary);
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
         }
 
         .founder-role {
@@ -387,6 +733,8 @@
             color: var(--neon-green);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         .contact-list {
@@ -453,7 +801,12 @@
             font-size: 0.85rem;
         }
 
-        /* 📡 Animations */
+        /* 📡 Keyframe Animations */
+        @keyframes rotate-hex {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @keyframes pulse-glow {
             from {
                 box-shadow: 0 0 5px rgba(16, 185, 129, 0.2);
@@ -463,31 +816,6 @@
                 box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
                 border-color: var(--neon-green);
             }
-        }
-
-        /* Toast Notification Styling */
-        #toast {
-            visibility: hidden;
-            min-width: 300px;
-            background-color: #0b0f12;
-            border: 2px solid var(--neon-green);
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 4.5s;
         }
 
         @keyframes fadein {
@@ -500,13 +828,40 @@
             to {bottom: 0; opacity: 0;}
         }
 
+        /* Responsive Layouts */
+        @media (max-width: 1024px) {
+            .slide-card-layout {
+                grid-template-columns: 1.2fr 1.5fr;
+            }
+            .slide-col-brand {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                align-items: center;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                padding-top: 20px;
+                margin-top: 20px;
+                text-align: left;
+            }
+            .brand-title-vert {
+                margin-top: 0;
+                font-size: 1.8rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .slide-card-layout {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            .grid-enroll {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -530,66 +885,254 @@
         <p>Unlock elite skills in artificial intelligence, geospatial intelligence, and advanced locations forensics. Built on production-level architectures, taught by practitioners.</p>
     </section>
 
-    <!-- 📦 Course Cards Grid -->
-    <div class="container">
-        <div class="grid">
+    <!-- 🖼️ Slide Gallery Showcase (Interactive Tab / Slide deck) -->
+    <section class="slideshow-section container">
+        <h2 class="slideshow-title">Official <span>Academy Brochure</span> Dashboard</h2>
+        <div class="slideshow-wrapper">
+            <div class="slides-container" id="slidesContainer">
+                <!-- Slide 1 -->
+                <div class="slide-item">
+                    <img src="images/slide1.png" alt="Leonode Academy Slide 1" class="slide-img">
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide-item">
+                    <img src="images/slide2.png" alt="Leonode Academy Slide 2" class="slide-img">
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide-item">
+                    <img src="images/slide3.png" alt="Leonode Academy Slide 3" class="slide-img">
+                </div>
+            </div>
+        </div>
+        <div class="slideshow-controls">
+            <div class="slideshow-dot active" onclick="goToSlide(0)"></div>
+            <div class="slideshow-dot" onclick="goToSlide(1)"></div>
+            <div class="slideshow-dot" onclick="goToSlide(2)"></div>
+        </div>
+    </section>
+
+    <!-- 📱 Recreated Slide Layouts in Pure HTML/CSS for premium indexing and responsiveness -->
+    <section class="recreated-slide-section container">
+        
+        <!-- Recreated Slide 1 -->
+        <div class="slide-card-layout">
+            <!-- Col 1: Portrait / Bio -->
+            <div class="slide-col-profile">
+                <div class="profile-frame">
+                    <img src="images/ai_fundamentals.png" alt="Nikhil Krishnan Founder Profile">
+                </div>
+                <div class="profile-desc">
+                    <strong>Nikhil Krishnan.</strong><br>
+                    <span class="highlight">Founder & Chief AI Solutions Architect.</span><br><br>
+                    LeoNode Academy delivers elite deep-tech education through a structured 3-tier curriculum. Course enrollment is 100% free. Cryptographic digital certificate available post-examination via Razorpay Gateway.
+                </div>
+            </div>
+
+            <!-- Col 2: Core Course Tiers -->
+            <div class="slide-col-content">
+                <div>
+                    <h4 class="slide-section-header">Democratizing Elite Technological Expertise.</h4>
+                </div>
+                
+                <!-- Tier 1 Detail -->
+                <div class="tier-card">
+                    <div class="tier-title-row">
+                        <span class="arrow-indicator">➔</span>
+                        <span class="tier-title-text">Tier 1: AI Fundamentals Gateway.</span>
+                    </div>
+                    <p class="tier-description">Google AI & IBM Applied Base Foundations. 100% Free Compulsory Entry Gatekeeper Level. Build your AI career from the ground up with industry-certified curriculum.</p>
+                </div>
+
+                <!-- Tier 2 Detail -->
+                <div class="tier-card">
+                    <div class="tier-title-row">
+                        <span class="arrow-indicator">➔</span>
+                        <span class="tier-title-text">Tier 2: Data Analytics & Forensic Architecture.</span>
+                    </div>
+                    <p class="tier-description">Real-world high-throughput telemetry analytics. Velocity mapping and data verification frameworks engineered for enterprise-grade forensic precision.</p>
+                </div>
+            </div>
+
+            <!-- Col 3: Brand Branding -->
+            <div class="slide-col-brand">
+                <div class="brand-logo-hex"></div>
+                <h2 class="brand-title-vert">LeoNode <span>Academy.</span></h2>
+                <div class="brand-tagline-vert">Driving decentralized deep-tech literacy across every district.</div>
+            </div>
+        </div>
+
+        <!-- Recreated Slide 2 -->
+        <div class="slide-card-layout">
+            <!-- Col 1: Portrait / Bio -->
+            <div class="slide-col-profile">
+                <div class="profile-frame">
+                    <img src="images/geospatial_intelligence.png" alt="Geospatial Forensic Lab">
+                </div>
+                <div class="profile-desc">
+                    <strong>Nikhil Krishnan.</strong><br>
+                    <span class="highlight">Founder & Chief AI Solutions Architect.</span><br><br>
+                    <strong>NOTICE:</strong> Course Enrollment is 100% Free. Secure Cryptographic Digital Certificate Fee: ₹199 (Applicable only post-examination verification via Razorpay Gateway). contact@leonodeacademy.com | 7510101134 & 7510101179
+                </div>
+            </div>
+
+            <!-- Col 2: Core Course Tiers -->
+            <div class="slide-col-content">
+                <div>
+                    <h4 class="slide-section-header">Tier 3: Geospatial Intelligence & GeoSense Pipeline.</h4>
+                </div>
+                
+                <!-- Remote Sensing -->
+                <div class="tier-card">
+                    <div class="tier-title-row">
+                        <span class="arrow-indicator">➔</span>
+                        <span class="tier-title-text">Remote Sensing & Satellite Mapping.</span>
+                    </div>
+                    <p class="tier-description">Advanced remote sensing systems and satellite data mapping integrated with real-world geospatial telemetry pipelines for high-precision spatial intelligence output.</p>
+                </div>
+
+                <!-- PostGIS Database -->
+                <div class="tier-card">
+                    <div class="tier-title-row">
+                        <span class="arrow-indicator">➔</span>
+                        <span class="tier-title-text">PostGIS Spatial Vector Infrastructure.</span>
+                    </div>
+                    <p class="tier-description">Custom PostGIS spatial vector database infrastructure with full-stack GeoSense pipeline deployment, enabling enterprise-grade geospatial data architecture at scale.</p>
+                </div>
+            </div>
+
+            <!-- Col 3: Brand Branding -->
+            <div class="slide-col-brand">
+                <div class="brand-logo-hex"></div>
+                <h2 class="brand-title-vert">LeoNode <span>Academy.</span></h2>
+                <div class="brand-tagline-vert">Democratizing Elite Technological Expertise worldwide.</div>
+            </div>
+        </div>
+
+        <!-- Recreated Slide 3 -->
+        <div class="slide-card-layout">
+            <!-- Col 1: Graph Representation -->
+            <div class="slide-col-profile">
+                <h3 class="slide-section-header" style="color:var(--text-primary); font-size: 1.4rem;">Founder Authority.</h3>
+                <p class="profile-desc" style="margin-top: 10px;">LeoNode Academy delivers elite-grade AI, data analytics, and geospatial intelligence education. Course enrollment is 100% free. Certificate fee: ₹199 post-examination via Razorpay Gateway.</p>
+                
+                <!-- Inline SVG line chart to exactly recreate the slide graph -->
+                <div class="svg-graph-container">
+                    <svg viewBox="0 0 100 60" style="width:100%; height:100%;">
+                        <!-- Grid Lines -->
+                        <line x1="0" y1="10" x2="100" y2="10" class="graph-grid" />
+                        <line x1="0" y1="25" x2="100" y2="25" class="graph-grid" />
+                        <line x1="0" y1="40" x2="100" y2="40" class="graph-grid" />
+                        <line x1="0" y1="55" x2="100" y2="55" class="graph-grid" />
+                        
+                        <!-- Line graph trace path matching: 2009(13), 2013(3), 2015(20), 2018(17), 2022(50) -->
+                        <!-- Coordinates mapped: 2009=(10,47), 2013=(30,57), 2015=(50,40), 2018=(70,43), 2022=(90,10) -->
+                        <path d="M 10 47 L 30 57 L 50 40 L 70 43 L 90 10" class="graph-line" />
+                        
+                        <!-- Graph plot dots -->
+                        <circle cx="10" cy="47" r="1.5" class="graph-dots" />
+                        <circle cx="30" cy="57" r="1.5" class="graph-dots" />
+                        <circle cx="50" cy="40" r="1.5" class="graph-dots" />
+                        <circle cx="70" cy="43" r="1.5" class="graph-dots" />
+                        <circle cx="90" cy="10" r="1.5" class="graph-dots" />
+                        
+                        <!-- Labels -->
+                        <text x="5" y="55" class="graph-text">2009</text>
+                        <text x="25" y="55" class="graph-text">2013</text>
+                        <text x="45" y="55" class="graph-text">2015</text>
+                        <text x="65" y="55" class="graph-text">2018</text>
+                        <text x="85" y="55" class="graph-text">2022</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Col 2: Image Gallery Stack -->
+            <div class="slide3-middle-grid">
+                <img src="images/ai_fundamentals.png" alt="Operational Core" class="slide3-middle-img">
+                <img src="images/advanced_analytics.png" alt="Forensic Operations" class="slide3-middle-img">
+                <img src="images/geospatial_intelligence.png" alt="Intelligence Lab" class="slide3-middle-img">
+            </div>
+
+            <!-- Col 3: Details & Contact node -->
+            <div class="slide-col-content" style="gap: 20px;">
+                <h4 class="slide-section-header" style="color:var(--text-primary);">Nikhil Krishnan <br><span style="font-size:0.85rem; color:var(--neon-green); text-transform:uppercase;">Founder & Chief AI Solutions Architect</span></h4>
+                <p class="profile-desc">Nikhil Krishnan leads LeoNode Academy as its Founder and Chief AI Solutions Architect, driving decentralized deep-tech literacy across every district. Portfolio: nikhilkrishnan.dev | contact@nikhilkrishnan.dev</p>
+                
+                <div class="tier-card" style="padding:15px; margin-top:5px;">
+                    <div style="font-weight:700; font-size:0.85rem; color:var(--text-primary); text-transform:uppercase; margin-bottom:5px;">Connect With Us</div>
+                    <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+                        📞 7510101134 | 7510101179 <br>
+                        ✉️ CONTACT@LEONODEACADEMY.COM <br>
+                        🌐 NIKHILKRISHNAN.DEV
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 💳 Course Enrollment & Checkout Station -->
+    <section class="container" id="checkout-station">
+        <h2 class="enroll-section-title">Interactive <span>Enrollment Station</span></h2>
+        <p class="enroll-section-desc">Register securely for full-access course curriculums using the active Razorpay node.</p>
+        
+        <div class="grid-enroll">
             
-            <!-- Tier 1: AI Fundamentals -->
-            <div class="card">
-                <div class="card-image-wrapper">
-                    <img src="images/ai_fundamentals.png" alt="AI Fundamentals" class="card-image">
+            <!-- Tier 1 Enrollment Card -->
+            <div class="card-enroll">
+                <div class="card-enroll-img-wrapper">
+                    <img src="images/ai_fundamentals.png" alt="AI Fundamentals Course Card" class="card-enroll-img">
+                    <span class="card-enroll-badge">Tier 01</span>
                 </div>
-                <div class="card-content">
-                    <div class="card-tag">Tier 01 // Foundation</div>
-                    <h3 class="card-title">AI Fundamentals</h3>
-                    <p class="card-desc">Master neural network architectures, transformers, and prompt engineering protocols. Develop custom GenAI pipeline flows and domestic security wrappers.</p>
-                    <div class="card-price-row">
-                        <span class="price-label">Price Plan</span>
-                        <span class="price-value">₹499<span>.00</span></span>
+                <div class="card-enroll-content">
+                    <h3 class="card-enroll-title">AI Fundamentals</h3>
+                    <p class="card-enroll-desc">Google AI & IBM Applied Base Foundations. Build your artificial intelligence career from the ground up with industry-certified curriculum protocols.</p>
+                    <div class="card-enroll-price-box">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary);">Enrollment Plan</span>
+                        <span class="enroll-price-val">₹499<span>.00</span></span>
                     </div>
-                    <button class="btn-buy" onclick="initiatePayment(49900, 'AI Fundamentals Course Enrollment')">Secure Enrollment</button>
+                    <button class="enroll-btn" onclick="initiatePayment(49900, 'AI Fundamentals Course Enrollment')">Secure Access</button>
                 </div>
             </div>
 
-            <!-- Tier 2: Advanced Analytics -->
-            <div class="card">
-                <div class="card-image-wrapper">
-                    <img src="images/advanced_analytics.png" alt="Advanced Analytics" class="card-image">
+            <!-- Tier 2 Enrollment Card -->
+            <div class="card-enroll">
+                <div class="card-enroll-img-wrapper">
+                    <img src="images/advanced_analytics.png" alt="Advanced Analytics Course Card" class="card-enroll-img">
+                    <span class="card-enroll-badge">Tier 02</span>
                 </div>
-                <div class="card-content">
-                    <div class="card-tag">Tier 02 // Analytics</div>
-                    <h3 class="card-title">Advanced Analytics</h3>
-                    <p class="card-desc">Deep dive into data science architectures, predictive modeling, machine learning, and time-series forecasting benchmarks for corporate operations.</p>
-                    <div class="card-price-row">
-                        <span class="price-label">Price Plan</span>
-                        <span class="price-value">₹999<span>.00</span></span>
+                <div class="card-enroll-content">
+                    <h3 class="card-enroll-title">Advanced Analytics</h3>
+                    <p class="card-enroll-desc">Real-world high-throughput telemetry analytics, velocity mapping, data science modeling, and predictive intelligence architectures.</p>
+                    <div class="card-enroll-price-box">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary);">Enrollment Plan</span>
+                        <span class="enroll-price-val">₹999<span>.00</span></span>
                     </div>
-                    <button class="btn-buy" onclick="initiatePayment(99900, 'Advanced Analytics Course Enrollment')">Secure Enrollment</button>
+                    <button class="enroll-btn" onclick="initiatePayment(99900, 'Advanced Analytics Course Enrollment')">Secure Access</button>
                 </div>
             </div>
 
-            <!-- Tier 3: Geospatial Intelligence -->
-            <div class="card">
-                <div class="card-image-wrapper">
-                    <img src="images/geospatial_intelligence.png" alt="Geospatial Intelligence" class="card-image">
+            <!-- Tier 3 Enrollment Card -->
+            <div class="card-enroll">
+                <div class="card-enroll-img-wrapper">
+                    <img src="images/geospatial_intelligence.png" alt="Geospatial Intelligence Course Card" class="card-enroll-img">
+                    <span class="card-enroll-badge">Tier 03</span>
                 </div>
-                <div class="card-content">
-                    <div class="card-tag">Tier 03 // Forensics</div>
-                    <h3 class="card-title">Geospatial Intelligence</h3>
-                    <p class="card-desc">Our flagship course. Master PostGIS spatial mapping, GPS spoofing detection, mobility pattern tracking, and location forensic sync pipelines.</p>
-                    <div class="card-price-row">
-                        <span class="price-label">Price Plan</span>
-                        <span class="price-value">₹1499<span>.00</span></span>
+                <div class="card-enroll-content">
+                    <h3 class="card-enroll-title">Geospatial Intelligence</h3>
+                    <p class="card-enroll-desc">PostGIS spatial mapping, GPS spoofing metrics, satellite remote sensing vector models, and GeoSense spatiotemporal pipeline forensics.</p>
+                    <div class="card-enroll-price-box">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary);">Enrollment Plan</span>
+                        <span class="enroll-price-val">₹1499<span>.00</span></span>
                     </div>
-                    <button class="btn-buy" onclick="initiatePayment(149900, 'Geospatial Intelligence Course Enrollment')">Secure Enrollment</button>
+                    <button class="enroll-btn" onclick="initiatePayment(149900, 'Geospatial Intelligence Course Enrollment')">Secure Access</button>
                 </div>
             </div>
 
         </div>
-    </div>
+    </section>
 
     <!-- 📝 Scholarship Form Panel -->
-    <section class="form-section">
+    <section class="form-section container">
         <h2>Scholarship Access Portal</h2>
         <p>Apply for a fully-funded seat sponsored by Leonode Labs.</p>
         <form id="scholarshipForm" onsubmit="submitScholarship(event)">
@@ -601,12 +1144,12 @@
                 <label>Academic Core Field</label>
                 <input type="text" id="studentField" placeholder="e.g. Relational DB / Geo-Forensics" required autocomplete="off">
             </div>
-            <button type="submit" class="btn-buy" style="margin-top: 10px;">Submit Application</button>
+            <button type="submit" class="enroll-btn" style="width:100%; margin-top: 10px;">Submit Application</button>
         </form>
     </section>
 
-    <!-- Toast Notification Banner -->
-    <div id="toast">NK POWER: Signal Lock Secured!</div>
+    <!-- Toast Alert Panel -->
+    <div id="toast">NK POWER: Active Signal Lock</div>
 
     <!-- 🏢 Footer -->
     <footer>
@@ -640,7 +1183,8 @@
                 <h3>Portal Quick Links</h3>
                 <ul class="contact-list">
                     <li>➔ <a href="https://nikhilkrishnan.dev" target="_blank" rel="noopener noreferrer">nikhilkrishnan.dev</a></li>
-                    <li>➔ <a href="#scholarshipForm">Scholarship Panel</a></li>
+                    <li>➔ <a href="#checkout-station">Enrollment Station</a></li>
+                    <li>➔ <a href="#scholarshipForm">Scholarship Portal</a></li>
                     <li>➔ <a href="https://github.com/nikhilkrishnan-ai" target="_blank" rel="noopener noreferrer">GitHub Profile</a></li>
                 </ul>
             </div>
@@ -666,6 +1210,26 @@
                 toast.classList.remove("show");
             }, 5000);
         }
+
+        // 🖼️ Slideshow Functionality
+        let currentSlide = 0;
+        const slidesContainer = document.getElementById("slidesContainer");
+        const dots = document.querySelectorAll(".slideshow-dot");
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            slidesContainer.style.transform = `translateX(-${slideIndex * 33.333}%)`;
+            dots.forEach((dot, idx) => {
+                if (idx === slideIndex) dot.classList.add("active");
+                else dot.classList.remove("active");
+            });
+        }
+
+        // Auto rotate slides every 5 seconds
+        setInterval(() => {
+            let next = (currentSlide + 1) % 3;
+            goToSlide(next);
+        }, 5000);
 
         // 💳 INITIATE PAYMENT FLOW
         async function initiatePayment(amountPaise, courseName) {
@@ -695,7 +1259,7 @@
                     name: "Leonode Academy",
                     description: courseName,
                     order_id: order_id,
-                    image: "images/ai_fundamentals.png", // fallback logo
+                    image: "images/ai_fundamentals.png",
                     handler: async function (response) {
                         try {
                             showToast("SECURING SIGNATURE VERIFICATION...");
@@ -778,7 +1342,7 @@
             }
         }
 
-        // 🔒 Hacker-Proof Security Core: Active Code & Context Blocking
+        // 🔒 Security Core: Active Code & Context Blocking
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         document.addEventListener('keydown', function(e) {
