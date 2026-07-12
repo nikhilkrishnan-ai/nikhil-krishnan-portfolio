@@ -1,145 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nikhil Krishnan — Senior Software Developer & AI Solutions Architect from Chengannur, Kerala. Full-stack backend engineering, API gateway design, and robust production-grade systems." />
-  <meta name="keywords" content="Nikhil Krishnan, Nikhil Krishnan Chengannur, Senior Software Developer Chengannur, AI Solutions Architect Kerala, Software Engineer Chengannur" />
-  
-  <!-- Open Graph / SEO Social Metadata -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:title" content="Nikhil Krishnan | Senior Software Developer & AI Solutions Architect" />
-  <meta property="og:description" content="Senior Software Developer and AI Architect based in Chengannur, Kerala. Expert in backend design, cloud integration, and enterprise APIs." />
-  <meta property="og:image" content="https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/images/nikhil-krishnan-chengannur-developer.png" />
-  <meta property="og:url" content="https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/" />
-  
-  <title>Nikhil Krishnan | Senior Software Developer & AI Solutions Architect</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Person Schema Markup (JSON-LD) for Search Engine Optimization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Nikhil Krishnan",
-    "jobTitle": "Senior Software Developer & AI Solutions Architect",
-    "url": "https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/",
-    "image": "https://nikhilkrishnan-ai.github.io/nikhil-krishnan-portfolio/images/nikhil-krishnan-chengannur-developer.png",
-    "sameAs": [
-      "https://github.com/nikhilkrishnan-ai",
-      "https://www.linkedin.com/in/nikhil-krishnan"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chengannur",
-      "addressRegion": "Kerala",
-      "addressCountry": "India"
-    },
-    "description": "Senior Software Developer and AI Solutions Architect specializing in backend architectures, API gateways, and scalable enterprise platforms."
-  }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEONODE ACADEMY | Student HUD v3.0</title>
+    <style>
+        /* 🎨 Premium Dark Obsidian & Emerald Green HUD Styling */
+        body {
+            background-color: #0b0f12; /* Dark Obsidian */
+            color: #e2e8f0; /* Slate Grey text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            user-select: none; /* 🔒 CSS Level Anti-Select Protection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .hud-container {
+            background: linear-gradient(145deg, #111820, #070a0d);
+            border: 2px solid #10b981; /* Emerald Green Neon Border */
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            width: 450px;
+            text-align: center;
+        }
+        h1 {
+            color: #10b981;
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #10b981;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #fff;
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+        .btn-hud {
+            background-color: #10b981;
+            color: #0b0f12;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .btn-hud:hover {
+            background-color: #059669;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+    </style>
 </head>
 <body>
-  <canvas id="game"></canvas>
 
-  <div id="loader">
-    <div class="loader-line"></div>
-    <p>Initializing experience</p>
-  </div>
-
-  <div id="hud">
-    <div class="hud-top">
-      <div class="brand-chip">
-        <span class="chip-label">Principal Profile</span>
-        <span class="chip-name">Nikhil Krishnan</span>
-      </div>
-      <div class="progress-chip">
-        <span class="chip-label">Sites visited</span>
-        <span id="progress-text">0 / 6</span>
-        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-      </div>
+    <div class="hud-container">
+        <h1>Leonode Academy</h1>
+        <p>Free Scholarship Application Form v3.0</p>
+        
+        <form id="scholarshipForm" onsubmit="event.preventDefault(); alert('NK POWER: Application Form Saved Domestically!');">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your full name" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label>Academic Core Field</label>
+                <input type="text" placeholder="e.g. Relational DB / Geo-Forensics" required autocomplete="off">
+            </div>
+            <button type="submit" class="btn-hud">Submit Scholarship Request</button>
+        </form>
     </div>
-    <div class="hud-bottom">
-      <div class="speed-chip">
-        <span class="chip-label">Velocity</span>
-        <span id="speed-value">0</span>
-        <span class="speed-unit">km/h</span>
-      </div>
-      <div class="controls-hint" id="controls-desktop">
-        <kbd>W</kbd> accelerate · <kbd>S</kbd> brake · <kbd>A</kbd><kbd>D</kbd> steer · <kbd>E</kbd> open briefing · <kbd>SPACE</kbd> handbrake
-      </div>
-      <div class="controls-hint hidden" id="controls-mobile">
-        On-screen controls · Tap landmarks when nearby
-      </div>
-      <p class="quest" id="quest-text">Drive to each landmark. Explore the full professional dossier.</p>
-    </div>
-  </div>
 
-  <div id="prompt" class="hidden">
-    <span class="prompt-key">E</span>
-    <span id="prompt-label">Open briefing</span>
-  </div>
+    <!-- 🔒 Hacker-Proof Security Core: Active Code & Context Blocking -->
+    <script>
+        // 1. റൈറ്റ് ക്ലിക്ക് കംപ്ലീറ്റ്ലി ലോക്ക് ചെയ്യാൻ!
+        document.addEventListener('contextmenu', event => event.preventDefault());
 
-  <div id="modal" class="hidden" aria-hidden="true">
-    <div class="modal-backdrop" id="modal-backdrop"></div>
-    <article class="modal-card">
-      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-      <p class="modal-eyebrow" id="modal-tag">Briefing</p>
-      <h2 id="modal-title">Title</h2>
-      <div id="modal-body"></div>
-      <div class="modal-links" id="modal-links"></div>
-    </article>
-  </div>
-
-  <div id="start-screen">
-    <div class="start-layout">
-      <div class="start-copy">
-        <div class="profile-avatar-container">
-          <img src="images/nikhil-krishnan-chengannur-developer.png" alt="Nikhil Krishnan - Senior Software Developer & AI Solutions Architect from Chengannur, Kerala" class="profile-avatar-img">
-        </div>
-        <p class="start-eyebrow">Interactive portfolio · Inspired by immersive 3D experiences</p>
-        <h1>Nikhil Krishnan</h1>
-        <p class="start-role">Senior Software Developer &amp; AI Solutions Architect</p>
-        <p class="start-summary">
-          Over eight years designing robust backend architectures, dynamic API gateways, and scalable enterprise platforms. I engineer highly resilient full-stack systems and integrate advanced AI orchestration layer models where absolute security and performance define trust.
-        </p>
-        <ul class="start-highlights">
-          <li>Google Cloud Vertex AI · Gemini Enterprise</li>
-          <li>DeepLearning.AI Prompt Engineering (Andrew Ng)</li>
-          <li>GeoSense — geospatial forensic intelligence</li>
-        </ul>
-        <div class="start-actions">
-          <button id="btn-start" class="btn-primary">Start driving</button>
-          <button id="btn-mobile" class="btn-secondary">Browse mode (mobile)</button>
-        </div>
-        <p class="start-note">Use keyboard to drive · Free on GitHub Pages</p>
-      </div>
-      <div class="start-preview" aria-hidden="true">
-        <div class="preview-road"></div>
-        <div class="preview-car"></div>
-        <p>Drive to each landmark to unlock briefings</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="touch-controls" class="hidden">
-    <button class="touch-btn" data-key="ArrowUp" aria-label="Accelerate">▲</button>
-    <button class="touch-btn" data-key="ArrowDown" aria-label="Brake">▼</button>
-    <button class="touch-btn" data-key="ArrowLeft" aria-label="Steer left">◀</button>
-    <button class="touch-btn" data-key="ArrowRight" aria-label="Steer right">▶</button>
-  </div>
-
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-    }
-  }
-  </script>
-  <script type="module" src="js/main.js"></script>
+        // 2. കീബോർഡ് വഴിയുള്ള എല്ലാ മോഷ്ടിക്കൽ റൂട്ടുകളും കൊട്ടിയടയ്ക്കാൻ!
+        document.addEventListener('keydown', function(e) {
+            // F12, Ctrl+Shift+I, Ctrl+Shift+C (DevTools) ബ്ലോക്ക്
+            if (e.keyCode == 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67)) || 
+                (e.ctrlKey && e.keyCode == 85)) { // Ctrl+U (View Source) ബ്ലോക്ക്
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+C, Ctrl+X, Ctrl+S (Copy, Cut, Save) ഫ്രീ ഫോമിൽ നിന്ന് തടയാൻ!
+            if (e.ctrlKey && (e.keyCode == 67 || e.keyCode == 88 || e.keyCode == 83)) {
+                alert("NK POWER: Leonode Academy Security Lock Active! 🔒 No Copy Allowed.");
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>
